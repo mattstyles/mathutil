@@ -1,0 +1,22 @@
+{
+  "name": "mathutil",
+  "version": "0.0.0",
+  "description": "Various and random collection of maths utilities",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepack": "npm run build",
+    "prebuild": "rm -rf lib && mkdir lib",
+    "build": "babel src --out-dir lib"
+  },
+  "keywords": [
+    "Math",
+    "underscore.math",
+    "util"
+  ],
+  "author": "Matt Styles",
+  "license": "ISC",
+  "devDependencies": {
+    "babel": "^5.8.21"
+  }
+}
