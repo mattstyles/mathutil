@@ -4,4 +4,10 @@
  * @TODO should probably be automated
  */
 
-export Point from './point'
+import Point from './point'
+import lerp from './lerp'
+
+export default {
+    Point: Point,
+    lerp: lerp
+}
