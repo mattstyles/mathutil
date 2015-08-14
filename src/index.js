@@ -6,8 +6,17 @@
 
 export default {
     Point: require( './point' ),
-    lerp: require( './lerp' ),
     Vector2: require( './vector2' ),
+
+    lerp: require( './lerp' ),
     toDegrees: require( './toDegrees' ),
-    toRadians: require( './toRadians' )
+    toRadians: require( './toRadians' ),
+    min: require( './min' ),
+    max: require( './max' ),
+
+    clamp: require( './clamp' ),
+    wrap: require( './wrap' ),
+
+    euclidean: require( './euclidean' ),
+    manhattan: require( './manhattan' )
 }
