@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepack": "npm run build",
     "prebuild": "rm -rf lib && mkdir lib",
-    "build": "babel src --out-dir lib"
+    "build": "babel src --out-dir lib",
+    "example": "browserify examples/rotate.js > examples.bundle.js"
   },
   "keywords": [
     "Math",

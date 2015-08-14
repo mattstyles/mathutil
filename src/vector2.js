@@ -195,7 +195,7 @@ export default class Vector2 {
      * Returns the vector angle
      * @TODO based on 0 degrees pointing _right_
      * @TODO based on origin at <0,0>, not necessarily this.origin
-     * @returns <Float>
+     * @returns <Float> in radians
      */
     angle() {
         return Math.atan2( this.y, this.x )
