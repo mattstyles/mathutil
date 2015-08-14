@@ -1,5 +1,6 @@
 
 import Point from './point'
+import toRadians from './toRadians'
 
 export default class Vector2 {
     /**
@@ -238,5 +239,25 @@ export default class Vector2 {
     distance( vec ) {
         return this.sub( vec ).length()
     }
+
+    /**
+     * Checks if the supplied vector is parallel to this vector
+     */
+    isHeading( vec ) {
+        // JS is so wonderfully quirky it’ll do plenty of almost correct calculations,
+        // the ugly decimal marking and casting makes sure we’re probably close enough
+        return ~~this.unit().dot( vec.unit() ).toFixed( 6 )
+    }
+
+    /**
+     * Checks if the supplied vector is generally heading in the same direction
+     * within `angle` degrees of accuracy
+     */
+    isHeading( vec ) {
+        // JS is so wonderfully quirky it’ll do plenty of almost correct calculations,
+        // the ugly decimal marking and casting makes sure we’re probably close enough
+        return ~~this.unit().dot( vec.unit() ).toFixed( 6 )
+    }
+
 
 }

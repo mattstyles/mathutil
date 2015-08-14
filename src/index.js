@@ -7,5 +7,7 @@
 export default {
     Point: require( './point' ),
     lerp: require( './lerp' ),
-    Vector2: require( './vector2' )
+    Vector2: require( './vector2' ),
+    toDegrees: require( './toDegrees' ),
+    toRadians: require( './toRadians' )
 }
