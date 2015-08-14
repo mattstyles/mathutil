@@ -70,7 +70,8 @@ export default class Vector2 {
      * @returns <Vector2>
      */
     add( vec ) {
-        return new Vector2( this.x + vec.x, this.x + vec.y )
+        console.log( this.x, this.y )
+        return new Vector2( this.x + vec.x, this.y + vec.y )
     }
 
     /**
@@ -79,7 +80,7 @@ export default class Vector2 {
      * @returns <Vector2>
      */
     sub( vec ) {
-        return new Vector2( this.x - vec.x, this.x - vec.y )
+        return new Vector2( this.x - vec.x, this.y - vec.y )
     }
 
     /**
@@ -88,7 +89,7 @@ export default class Vector2 {
      * @returns <Vector2>
      */
     multiply( vec ) {
-        return new Vector2( this.x * vec.x, this.x * vec.y )
+        return new Vector2( this.x * vec.x, this.y * vec.y )
     }
 
     /**
@@ -115,7 +116,7 @@ export default class Vector2 {
      * @returns <Float>
      */
     dot( vec ) {
-        return new Vector2( this.x * vec.x + this.y * vec.y )
+        return this.x * vec.x + this.y * vec.y
     }
 
     /**
@@ -124,7 +125,7 @@ export default class Vector2 {
      * @returns <Float>
      */
     cross( vec ) {
-        return new Vector2( this.x * vec.y - this.y * vec.x )
+        return this.x * vec.y - this.y * vec.x
     }
 
     /**
@@ -211,6 +212,31 @@ export default class Vector2 {
      */
     angle() {
         return Math.atan2( this.y, this.x )
+    }
+
+
+    /*-----------------------------------------------------------*
+     *
+     *  Useful stuff
+     *
+     *-----------------------------------------------------------*/
+
+    /**
+     * Linearly interpolates along the length of the vector
+     * @param value <Float>
+     * @returns <Vector2>
+     */
+    lerp( value ) {
+        return this.scalar( value ).add( this.origin )
+    }
+
+    /**
+     * Calcs the distance between this vector and another one
+     * @param vec <Vector2||Point>
+     * @returns <Float>
+     */
+    distance( vec ) {
+        return this.sub( vec ).length()
     }
 
 }
