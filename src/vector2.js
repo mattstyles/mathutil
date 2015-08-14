@@ -242,22 +242,25 @@ export default class Vector2 {
 
     /**
      * Checks if the supplied vector is parallel to this vector
+     * @param vec <Vector2>
+     * @returns <Boolean>
      */
     isHeading( vec ) {
         // JS is so wonderfully quirky it’ll do plenty of almost correct calculations,
         // the ugly decimal marking and casting makes sure we’re probably close enough
         return ~~this.unit().dot( vec.unit() ).toFixed( 6 )
+            ? true
+            : false
     }
 
     /**
      * Checks if the supplied vector is generally heading in the same direction
      * within `angle` degrees of accuracy
+     * @param vec <Vector2>
+     * @returns <Boolean>
      */
-    isHeading( vec ) {
-        // JS is so wonderfully quirky it’ll do plenty of almost correct calculations,
-        // the ugly decimal marking and casting makes sure we’re probably close enough
-        return ~~this.unit().dot( vec.unit() ).toFixed( 6 )
+    isNearHeading( vec, angle ) {
+        return this.unit().dot( vec.unit() ) > Math.cos( angle )
     }
-
 
 }
