@@ -6,6 +6,7 @@
 
 export default {
     Point: require( './point' ),
+    Rect: require( './rect' ),
     Vector2: require( './vector2' ),
 
     lerp: require( './lerp' ),
