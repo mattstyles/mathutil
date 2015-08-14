@@ -46,8 +46,6 @@ export default class Vector2 {
             throw new Error( 'Vector2::constructor invalid parameters' )
         }
 
-        console.log( 'constructor:: using x and y', x, y )
-
         this.head = new Point( x, y )
         this.origin = new Point( 0, 0 )
 
@@ -99,8 +97,6 @@ export default class Vector2 {
      * @returns <Vector2>
      */
     divide( vec ) {
-        console.log( 'divide' )
-        console.log( this.x, this.y, vec.x, vec.y )
         return new Vector2( this.x / vec.x || 0, this.y / vec.y || 0 )
     }
 
