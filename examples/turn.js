@@ -1,8 +1,18 @@
 
 import { Vector2, toRadians } from '../lib'
 
+const CANVAS_SIZE = 600
+
 const canvas = document.querySelector( 'canvas' )
+
+canvas.width = CANVAS_SIZE * window.devicePixelRatio
+canvas.height = CANVAS_SIZE * window.devicePixelRatio
+canvas.style.width = CANVAS_SIZE + 'px'
+canvas.style.height = CANVAS_SIZE + 'px'
+
 const ctx = canvas.getContext( '2d' )
+ctx.scale( window.devicePixelRatio, window.devicePixelRatio )
+
 
 const PI2 = Math.PI * 2
 
@@ -12,9 +22,24 @@ class Entity {
         this.dir = new Vector2( 0, 1 )
 
         this.size = 4
+        this.fov = 100
+        this.visionDistance = 80
     }
 
     render() {
+        let halfVisionAngle = toRadians( this.fov / 2 )
+        let leftVector = this.dir.unit().rotate( -halfVisionAngle )
+        let rightVector = this.dir.unit().rotate( halfVisionAngle )
+
+        // Render vision segment
+        ctx.beginPath()
+        ctx.moveTo( this.pos.x, this.pos.y )
+        ctx.lineTo( ...this.pos.add( leftVector.scalar( 10 ) ).position() )
+        ctx.arc( this.pos.x, this.pos.y, this.visionDistance, leftVector.angle(), rightVector.angle(), false )
+        ctx.lineTo( this.pos.x, this.pos.y )
+        ctx.fillStyle = 'rgba( 0, 0, 0, .15 )'
+        ctx.fill()
+
         // Render facing vector
         ctx.beginPath()
         ctx.moveTo( this.pos.x, this.pos.y )
