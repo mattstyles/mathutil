@@ -1,6 +1,5 @@
 
 import Point from './point'
-import toRadians from './toRadians'
 
 export default class Vector2 {
     /**
@@ -63,7 +62,14 @@ export default class Vector2 {
      *
      *-----------------------------------------------------------*/
 
-
+    /**
+     * Outputs an array describing the position [ x, y ]
+     * Useful for spreading to parameters
+     * @returns <Array>
+     */
+    position() {
+        return [ this.x, this. y ]
+    }
 
     /**
      * Adds a second vector and returns a new vector
@@ -71,7 +77,6 @@ export default class Vector2 {
      * @returns <Vector2>
      */
     add( vec ) {
-        console.log( this.x, this.y )
         return new Vector2( this.x + vec.x, this.y + vec.y )
     }
 
