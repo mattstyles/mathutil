@@ -181,7 +181,7 @@ export default class Vector2 {
      * Rotates the vector
      * @TODO rotates around <0,0>, not necessarily this.origin
      * @TODO specify angle as an integer and use pre-calc tables for sin & cos
-     * @param angle <Float>
+     * @param angle <Float> in radians
      * @returns <Vector2>
      */
     rotate( angle ) {
@@ -189,6 +189,18 @@ export default class Vector2 {
             this.x * Math.cos( angle ) - this.y * Math.sin( angle ),
             this.x * Math.sin( angle ) + this.y * Math.cos( angle )
         )
+    }
+
+    /**
+     * Produces a new vector that is `angle` amount of rotation away from its
+     * current angle
+     * @TODO assumes origin is <0,0>
+     * @TODO should probably produce a vector whose origin is at this vectors head, use unit vectors
+     * @param angle <Float> in radians
+     * @returns <Vector2>
+     */
+    turn( angle ) {
+        return this.rotate( this.angle() + angle ).unit()
     }
 
     /**
