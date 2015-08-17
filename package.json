@@ -8,7 +8,7 @@
     "prepack": "npm run build",
     "prebuild": "rm -rf lib && mkdir lib",
     "build": "babel src --out-dir lib",
-    "example": "browserify -t babelify examples/turn.js > examples/bundle.js"
+    "examples": "browserify -t babelify examples/turn.js > examples/bundle.js"
   },
   "keywords": [
     "Math",
