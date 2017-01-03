@@ -25,6 +25,45 @@ export default class Vector2 {
   }
 
   /**
+   * Subtracts two vectors and returns a new instance
+   * @param v1 <Vector2||Array||Number>
+   * @param v2 <Vector2||Array||Number>
+   * @returns <Vector2>
+   */
+  static sub (v1, v2) {
+    let x = massageScalar(v1)
+    let y = massageScalar(v2)
+    return new Vector2(x[0] - y[0], x[1] - y[1])
+  }
+
+  /**
+   * Multiplies two vectors and returns a new instance
+   * @param v1 <Vector2||Array||Number>
+   * @param v2 <Vector2||Array||Number>
+   * @returns <Vector2>
+   */
+  static multiply (v1, v2) {
+    let x = massageScalar(v1)
+    let y = massageScalar(v2)
+    return new Vector2(x[0] * y[0], x[1] * y[1])
+  }
+
+  /**
+   * Divides two vectors and returns a new instance
+   * @param v1 <Vector2||Array||Number>
+   * @param v2 <Vector2||Array||Number>
+   * @returns <Vector2>
+   */
+  static divide (v1, v2) {
+    let x = massageScalar(v1)
+    let y = massageScalar(v2)
+    return new Vector2(
+      y[0] === 0 ? 0 : x[0] / y[0],
+      y[1] === 0 ? 0 : x[1] / y[1]
+    )
+  }
+
+  /**
    * `x` and `y` refer to both direction and magnitude, they are stored in a
    * point array for performance
    * @constructs
@@ -80,29 +119,50 @@ export default class Vector2 {
 
   /**
    * Subtracts a second vector and returns a new vector
-   * @param vec <Vector2||Point>
-   * @returns <Vector2>
+   * @param vec <Vector2||Array||Number>
+   * @returns <this>
    */
   sub (vec) {
-    return new Vector2(this.x - vec.x, this.y - vec.y)
+    let p = massageScalar(vec)
+
+    this.pos = [
+      this.pos[0] - p[0],
+      this.pos[1] - p[1]
+    ]
+
+    return this
   }
 
   /**
    * Multiplies a second vector and returns a new vector
-   * @param vec <Vector2||Point>
-   * @returns <Vector2>
+   * @param vec <Vector2||Array||Number>
+   * @returns <this>
    */
   multiply (vec) {
-    return new Vector2(this.x * vec.x, this.y * vec.y)
+    let p = massageScalar(vec)
+
+    this.pos = [
+      this.pos[0] * p[0],
+      this.pos[1] * p[1]
+    ]
+
+    return this
   }
 
   /**
    * Divides a second vector and returns a new vector
-   * @param vec <Vector2||Point>
-   * @returns <Vector2>
+   * @param vec <Vector2||Array||Number>
+   * @returns <this>
    */
   divide (vec) {
-    return new Vector2(this.x / vec.x || 0, this.y / vec.y || 0)
+    let p = massageScalar(vec)
+
+    this.pos = [
+      p[0] === 0 ? 0 : this.pos[0] / p[0],
+      p[1] === 0 ? 0 : this.pos[1] / p[1]
+    ]
+
+    return this
   }
 
   /**
