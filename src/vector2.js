@@ -11,7 +11,7 @@ function massageScalar (param) {
   return param
 }
 
-export default class Vector2 {
+class Vector2 {
   /**
    * Adds two vectors and returns a new instance
    * @param v1 <Vector2||Array||Number>
@@ -106,6 +106,26 @@ export default class Vector2 {
     let x = massageScalar(vec)
     let len = Vector2.length(x)
     return Vector2.divide(x, [len, len])
+  }
+
+  /**
+   * Returns the normal vector of a given vector
+   * @param vec <Vector2||Array||Number>
+   * @returns <Vector2>
+   */
+  static normal (vec) {
+    let x = massageScalar(vec)
+    return new Vector2(-x[1], x[0])
+  }
+
+  /**
+   * Returns the backface normal vector of a given vector
+   * @param vec <Vector2||Array||Number>
+   * @returns <Vector2>
+   */
+  static backfaceNormal (vec) {
+    let x = massageScalar(vec)
+    return new Vector2(x[1], -x[0])
   }
 
   /**
@@ -275,7 +295,7 @@ export default class Vector2 {
    * @returns <Vector2>
    */
   normal () {
-    return new Vector2(-this.y, this.x)
+    return new Vector2(-this.pos[1], this.pos[0])
   }
 
   /**
@@ -283,7 +303,7 @@ export default class Vector2 {
    * @returns <Vector2>
    */
   backfaceNormal () {
-    return new Vector2(this.y, -this.x)
+    return new Vector2(this.pos[1], -this.pos[0])
   }
 
   /**
@@ -369,3 +389,5 @@ export default class Vector2 {
     return this.unit().dot(vec.unit()) > Math.cos(angle)
   }
 }
+
+export default Vector2

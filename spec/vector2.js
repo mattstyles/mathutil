@@ -272,3 +272,31 @@ test('Vector2::unit -- static method', assert => {
   assert.ok(diag[0] > 0.707 && diag[0] < 0.708, 'Diagonal x component unit is correct')
   assert.ok(diag[1] > 0.707 && diag[1] < 0.708, 'Diagonal y component unit is correct')
 })
+
+test('Vector2::normal -- instance method', assert => {
+  assert.plan(2)
+
+  assert.deepEqual(new Vector2(0, 1).normal().pos, [-1, 0], 'Normal vector is correct')
+  assert.deepEqual(new Vector2(1, 0).normal().pos, [0, 1], 'Normal vector is correct')
+})
+
+test('Vector2::normal -- static method', assert => {
+  assert.plan(2)
+
+  assert.deepEqual(Vector2.normal([0, 1]).pos, [-1, 0], 'Normal vector is correct')
+  assert.deepEqual(Vector2.normal([1, 0]).pos, [0, 1], 'Normal vector is correct')
+})
+
+test('Vector2::backfaceNormal -- instance method', assert => {
+  assert.plan(2)
+
+  assert.deepEqual(new Vector2(0, 1).backfaceNormal().pos, [1, 0], 'Backface normal vector is correct')
+  assert.deepEqual(new Vector2(1, 0).backfaceNormal().pos, [0, -1], 'Backface normal vector is correct')
+})
+
+test('Vector2::backfaceNormal -- static method', assert => {
+  assert.plan(2)
+
+  assert.deepEqual(Vector2.backfaceNormal([0, 1]).pos, [1, 0], 'Backface normal vector is correct')
+  assert.deepEqual(Vector2.backfaceNormal([1, 0]).pos, [0, -1], 'Backface normal vector is correct')
+})
