@@ -166,30 +166,23 @@ export default class Vector2 {
   }
 
   /**
-   * Multiply this vector by a scalar and return a new vector
-   * @param value <Float>
-   * @returns <Vector2>
-   */
-  scalar (value) {
-    return new Vector2(this.x * value, this.y * value)
-  }
-
-  /**
    * Returns the dot product of this vector and the supplied vector
-   * @param vec <Vector2||Point>
+   * @param vec <Vector2||Array||Number>
    * @returns <Float>
    */
   dot (vec) {
-    return this.x * vec.x + this.y * vec.y
+    let p = massageScalar(vec)
+    return this.pos[0] * p[0] + this.pos[1] * p[1]
   }
 
   /**
    * Returns the cross product of this vector and the supplied vector
-   * @param vec <Vector2||Point>
+   * @param vec <Vector2||Array||Number>
    * @returns <Float>
    */
   cross (vec) {
-    return this.x * vec.y - this.y * vec.x
+    let p = massageScalar(vec)
+    return this.pos[0] * p[0] - this.pos[1] * p[1]
   }
 
   /**
@@ -197,7 +190,7 @@ export default class Vector2 {
    * @returns <Float>
    */
   length () {
-    return Math.sqrt(Math.pow(this.head.x - this.origin.x, 2) + Math.pow(this.head.y - this.origin.y, 2))
+    return Math.sqrt(Math.pow(this.pos[0], 2) + Math.pow(this.pos[1], 2))
   }
 
   /**
@@ -205,7 +198,7 @@ export default class Vector2 {
    * @returns <Float>
    */
   sqrLength () {
-    return Math.pow(this.head.x - this.origin.x, 2) + Math.pow(this.head.y - this.origin.y, 2)
+    return Math.pow(this.pos[0], 2) + Math.pow(this.pos[1], 2)
   }
 
   /**
@@ -214,10 +207,7 @@ export default class Vector2 {
    */
   unit () {
     let len = this.length()
-    return this.divide({
-      x: len,
-      y: len
-    })
+    return Vector2.divide(this.pos, [len, len])
   }
 
     /* -----------------------------------------------------------*

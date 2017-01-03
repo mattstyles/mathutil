@@ -33,7 +33,7 @@
   "repository": "git://github.com/mattstyles/mathutil.git",
   "license": "MIT",
   "devDependencies": {
-    "babel": "^6.5.2",
+    "babel-cli": "^6.18.0",
     "babel-eslint": "^7.1.1",
     "babel-preset-urban": "^1.0.0",
     "babel-register": "^6.18.0",
