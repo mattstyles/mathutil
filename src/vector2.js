@@ -64,6 +64,51 @@ export default class Vector2 {
   }
 
   /**
+   * Returns the dot product of two vectors
+   * @param v1 <Vector2||Array||Number>
+   * @param v2 <Vector2||Array||Number>
+   * @returns <Float>
+   */
+  static dot (v1, v2) {
+    let x = massageScalar(v1)
+    let y = massageScalar(v2)
+    return x[0] * y[0] + x[1] * y[1]
+  }
+
+  /**
+   * Returns the cross product of two vectors
+   * @param v1 <Vector2||Array||Number>
+   * @param v2 <Vector2||Array||Number>
+   * @returns <Float>
+   */
+  static cross (v1, v2) {
+    let x = massageScalar(v1)
+    let y = massageScalar(v2)
+    return x[0] * y[0] - x[1] * y[1]
+  }
+
+  /**
+   * Returns the length of a vector
+   * @param vec <Vector2||Array||Number>
+   * @returns <Float>
+   */
+  static length (vec) {
+    let x = massageScalar(vec)
+    return Math.sqrt(Math.pow(x[0], 2) + Math.pow(x[1], 2))
+  }
+
+  /**
+   * Returns the unit vector of a given vector
+   * @param vec <Vector2||Array||Number>
+   * @returns <Vector2>
+   */
+  static unit (vec) {
+    let x = massageScalar(vec)
+    let len = Vector2.length(x)
+    return Vector2.divide(x, [len, len])
+  }
+
+  /**
    * `x` and `y` refer to both direction and magnitude, they are stored in a
    * point array for performance
    * @constructs
@@ -210,11 +255,11 @@ export default class Vector2 {
     return Vector2.divide(this.pos, [len, len])
   }
 
-    /* -----------------------------------------------------------*
-     *
-     *  Rotation
-     *
-     *----------------------------------------------------------- */
+  /* -----------------------------------------------------------*
+   *
+   *  Rotation
+   *
+   *----------------------------------------------------------- */
 
   /**
    * Quick rotate 90 degrees to the left, where y is 'up' this is the normal vector
