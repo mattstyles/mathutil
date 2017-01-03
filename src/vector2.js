@@ -211,6 +211,15 @@ export default class Vector2 {
   }
 
   /**
+   * Sets the vector to the specified length
+   */
+  magnitude (len) {
+    let vec = Vector2.multiply(this.unit(), len)
+    this.pos = vec.pos
+    return this
+  }
+
+  /**
    * Returns the dot product of this vector and the supplied vector
    * @param vec <Vector2||Array||Number>
    * @returns <Float>
@@ -247,7 +256,7 @@ export default class Vector2 {
   }
 
   /**
-   * Maintains direction but clamps to 0...1
+   * Returns unit vector of this vector
    * @returns <Vector2>
    */
   unit () {

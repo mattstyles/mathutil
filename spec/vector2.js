@@ -166,3 +166,109 @@ test('Vector2::Divide -- static method', assert => {
 
   divide([2, 1], [2, 0], [1, 0], 'Dividing by 0 returns 0 rather than infinity')
 })
+
+test('Vector2::dot -- instance method', assert => {
+  assert.plan(5)
+
+  let x = new Vector2(0, 1)
+
+  // Check cardinals
+  assert.equal(x.dot([0, 1]), 1, 'Both vectors point in the same direction')
+  assert.equal(x.dot([1, 0]), 0, 'Vectors are perpendicular')
+  assert.equal(x.dot([-1, 0]), 0, 'Vectors are perpendicular')
+  assert.equal(x.dot([0, -1]), -1, 'Vectors point in opposite directions')
+
+  // Sanity check diagonal
+  let ne = Vector2.unit([1, 1])
+  let dot = x.dot(ne)
+  assert.ok(dot > 0.5 && dot < 1, 'Vectors are at 45 degrees')
+})
+
+test('Vector2::dot -- static method', assert => {
+  assert.plan(5)
+
+  let x = [0, 1]
+
+  // Check cardinals
+  assert.equal(Vector2.dot(x, [0, 1]), 1, 'Both vectors point in the same direction')
+  assert.equal(Vector2.dot(x, [1, 0]), 0, 'Vectors are perpendicular')
+  assert.equal(Vector2.dot(x, [-1, 0]), 0, 'Vectors are perpendicular')
+  assert.equal(Vector2.dot(x, [0, -1]), -1, 'Vectors point in opposite directions')
+
+  // Sanity check diagonal
+  let ne = Vector2.unit([1, 1])
+  let dot = Vector2.dot(x, ne)
+  assert.ok(dot > 0.5 && dot < 1, 'Vectors are at 45 degrees')
+})
+
+test('Vector2::cross -- instance method', assert => {
+  assert.plan(5)
+
+  let x = new Vector2(0, 1)
+
+  // Check cardinals
+  assert.equal(x.cross([0, 1]), -1, 'Both vectors point in the same direction')
+  assert.equal(x.cross([1, 0]), 0, 'Vectors are perpendicular')
+  assert.equal(x.cross([-1, 0]), 0, 'Vectors are perpendicular')
+  assert.equal(x.cross([0, -1]), 1, 'Vectors point in opposite directions')
+
+  // Sanity check diagonal
+  let ne = Vector2.unit([1, 1])
+  let cross = x.cross(ne)
+  assert.ok(cross > -1 && cross < -0.5, 'Vectors are at 45 degrees')
+})
+
+test('Vector2::cross -- static method', assert => {
+  assert.plan(5)
+
+  let x = [0, 1]
+
+  // Check cardinals
+  assert.equal(Vector2.cross(x, [0, 1]), -1, 'Both vectors point in the same direction')
+  assert.equal(Vector2.cross(x, [1, 0]), 0, 'Vectors are perpendicular')
+  assert.equal(Vector2.cross(x, [-1, 0]), 0, 'Vectors are perpendicular')
+  assert.equal(Vector2.cross(x, [0, -1]), 1, 'Vectors point in opposite directions')
+
+  // Sanity check diagonal
+  let ne = Vector2.unit([1, 1])
+  let cross = Vector2.cross(x, ne)
+  assert.ok(cross > -1 && cross < -0.5, 'Vectors are at 45 degrees')
+})
+
+test('Vector2::length -- instance method', assert => {
+  assert.plan(3)
+
+  assert.equal(new Vector2(0, 1).length(), 1, 'Unit vector is length 1')
+  assert.equal(new Vector2(0, 2).length(), 2, 'Vector length is correct')
+  assert.equal(new Vector2(3, 4).length(), 5, 'Vector length is correct')
+})
+
+test('Vector2::length -- static method', assert => {
+  assert.plan(3)
+
+  assert.equal(Vector2.length([0, 1]), 1, 'Unit vector is length 1')
+  assert.equal(Vector2.length([0, 2]), 2, 'Vector length is correct')
+  assert.equal(Vector2.length([3, 4]), 5, 'Vector length is correct')
+})
+
+test('Vector2::unit -- instance method', assert => {
+  assert.plan(4)
+
+  assert.deepEqual(new Vector2(0, 2).unit().pos, [0, 1], 'Unit vector is correct')
+  assert.deepEqual(new Vector2(-3, 0).unit().pos, [-1, 0], 'Unit vector is correct')
+
+  let diag = new Vector2(2, 2).unit().pos
+  assert.ok(diag[0] > 0.707 && diag[0] < 0.708, 'Diagonal x component unit is correct')
+  assert.ok(diag[1] > 0.707 && diag[1] < 0.708, 'Diagonal y component unit is correct')
+})
+
+test('Vector2::unit -- static method', assert => {
+  assert.plan(4)
+
+  assert.deepEqual(Vector2.unit([0, 2]).pos, [0, 1], 'Unit vector is correct')
+  assert.deepEqual(Vector2.unit([-3, 0]).pos, [-1, 0], 'Unit vector is correct')
+
+  let diag = Vector2.unit([2, 2]).pos
+  assert.ok(diag[0] > 0.707 && diag[0] < 0.708, 'Diagonal x component unit is correct')
+  assert.ok(diag[1] > 0.707 && diag[1] < 0.708, 'Diagonal y component unit is correct')
+})
