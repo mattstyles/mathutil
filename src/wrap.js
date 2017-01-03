@@ -2,14 +2,14 @@
 /**
  * -Stolen-, borrowed from Phaser
  */
-export default function wrap( value, min, max ) {
-    let range = max - min
-    if ( range <= 0 ) {
-        return 0
-    }
-    let res = ( value - min ) % range
-    if ( res < 0 ) {
-        res += range
-    }
-    return res + min
+export default function wrap (value, min, max) {
+  let range = max - min
+  if (range <= 0) {
+    return 0
+  }
+  let res = (value - min) % range
+  if (res < 0) {
+    res += range
+  }
+  return res + min
 }

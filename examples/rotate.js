@@ -1,49 +1,46 @@
 
-var Vector2 = require( '../lib' ).Vector2
+var Vector2 = require('../lib').Vector2
 
-var canvas = document.querySelector( 'canvas' )
-var ctx = canvas.getContext( '2d' )
+var canvas = document.querySelector('canvas')
+var ctx = canvas.getContext('2d')
 
-var vec = new Vector2( 100, 100 )
+var vec = new Vector2(100, 100)
 
-function color( value ) {
-    return 'rgb( ' + ( 0xff * value ) + ', 0, 0 )'
+function color (value) {
+  return 'rgb( ' + (0xff * value) + ', 0, 0 )'
 }
 
-
-
-function drawLine( pt ) {
-    ctx.beginPath()
-    ctx.moveTo( 300, 300 )
-    ctx.lineTo( 300 + pt.x, 300 + pt.y )
-    ctx.stroke()
+function drawLine (pt) {
+  ctx.beginPath()
+  ctx.moveTo(300, 300)
+  ctx.lineTo(300 + pt.x, 300 + pt.y)
+  ctx.stroke()
 }
 
 var rad = Math.PI / 180
 var step = 720
 
-function drawRotation() {
-    for ( var a = 0; a < 360; a += ~~step ) {
-        ctx.strokeStyle = color( a / 360 )
-        drawLine( vec.rotate( a * rad ) )
-    }
+function drawRotation () {
+  for (var a = 0; a < 360; a += ~~step) {
+    ctx.strokeStyle = color(a / 360)
+    drawLine(vec.rotate(a * rad))
+  }
 }
 
-function go() {
-    ctx.clearRect( 0, 0, 600, 600 )
+function go () {
+  ctx.clearRect(0, 0, 600, 600)
 
-    step /= 2
+  step /= 2
 
-    if ( step < 1 ) {
-        step = 360
-    }
+  if (step < 1) {
+    step = 360
+  }
 
-    drawRotation()
+  drawRotation()
 
-    setTimeout( function() {
-        go()
-    }, 100 )
+  setTimeout(function () {
+    go()
+  }, 100)
 }
 
-
-setTimeout( go, 100 )
+setTimeout(go, 100)

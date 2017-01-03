@@ -4,7 +4,7 @@
   "description": "Various and random collection of maths utilities",
   "main": "lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "tape -r babel-register spec/*.js",
     "prepublish": "npm run build",
     "prepack": "npm run build",
     "watch": "babel src --out-dir lib --watch",
@@ -14,7 +14,9 @@
     "example": "budo examples/turn.js:bundle.js -v --dir examples --live"
   },
   "babel": {
-    "presets": [ "urban" ]
+    "presets": [
+      "urban"
+    ]
   },
   "browserify": {
     "transform": "babelify"
@@ -31,13 +33,17 @@
   "repository": "git://github.com/mattstyles/mathutil.git",
   "license": "MIT",
   "devDependencies": {
-    "babel-cli": "^6.8.0",
-    "babel-preset-urban": "^0.5.0",
+    "babel": "^6.5.2",
+    "babel-eslint": "^7.1.1",
+    "babel-preset-urban": "^1.0.0",
+    "babel-register": "^6.18.0",
     "babelify": "^7.3.0",
-    "browserify": "^13.0.1",
-    "budo": "^8.2.2",
+    "browserify": "^13.1.1",
+    "budo": "^9.4.1",
+    "microtime": "^2.1.2",
     "mkdirp": "^0.5.1",
-    "rimraf": "^2.5.2",
-    "tape": "^4.5.1"
+    "rimraf": "^2.5.4",
+    "standard": "^8.6.0",
+    "tape": "^4.6.3"
   }
 }
