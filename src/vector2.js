@@ -129,6 +129,15 @@ class Vector2 {
   }
 
   /**
+   * Generates a unit vector from an angle
+   * @param angle <Float> in radians
+   * @returns <Vector2>
+   */
+  static fromAngle (angle) {
+    return new Vector2(1, 0).rotate(angle)
+  }
+
+  /**
    * `x` and `y` refer to both direction and magnitude, they are stored in a
    * point array for performance
    * @constructs
@@ -308,38 +317,42 @@ class Vector2 {
 
   /**
    * Rotates the vector
-   * @TODO rotates around <0,0>, not necessarily this.origin
    * @TODO specify angle as an integer and use pre-calc tables for sin & cos
    * @param angle <Float> in radians
    * @returns <Vector2>
    */
   rotate (angle) {
-    return new Vector2(
-            this.x * Math.cos(angle) - this.y * Math.sin(angle),
-            this.x * Math.sin(angle) + this.y * Math.cos(angle)
-        )
+    let [x, y] = this.pos
+    let sin = Math.sin(angle)
+    let cos = Math.cos(angle)
+    this.pos = [
+      x * cos - y * sin,
+      x * sin + y * cos
+    ]
+    return this
   }
 
   /**
-   * Produces a new vector that is `angle` amount of rotation away from its
-   * current angle
-   * @TODO assumes origin is <0,0>
-   * @TODO should probably produce a vector whose origin is at this vectors head, use unit vectors
+   * Points the vector in a certain direction
    * @param angle <Float> in radians
    * @returns <Vector2>
    */
   turn (angle) {
-    return this.rotate(this.angle() + angle).unit()
+    let len = this.length()
+    let dir = new Vector2(1, 0).rotate(angle)
+    this.pos = [
+      dir.pos[0] * len,
+      dir.pos[1] * len
+    ]
+    return this
   }
 
   /**
    * Returns the vector angle
-   * @TODO based on 0 degrees pointing _right_
-   * @TODO based on origin at <0,0>, not necessarily this.origin
    * @returns <Float> in radians
    */
   angle () {
-    return Math.atan2(this.y, this.x)
+    return Math.atan2(this.pos[1], this.pos[0])
   }
 
   /* -----------------------------------------------------------*
