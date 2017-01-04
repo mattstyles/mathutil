@@ -362,12 +362,13 @@ class Vector2 {
    *----------------------------------------------------------- */
 
   /**
-   * Linearly interpolates along the length of the vector
+   * Returns a new vector linearly interpolated along the length of
+   * this vector
    * @param value <Float>
    * @returns <Vector2>
    */
   lerp (value) {
-    return this.scalar(value).add(this.origin)
+    return Vector2.multiply(this, value)
   }
 
   /**
@@ -376,7 +377,7 @@ class Vector2 {
    * @returns <Float>
    */
   distance (vec) {
-    return this.sub(vec).length()
+    return Vector2.sub(this, vec).length()
   }
 
   /**
@@ -385,21 +386,18 @@ class Vector2 {
    * @returns <Boolean>
    */
   isHeading (vec) {
-      // JS is so wonderfully quirky it’ll do plenty of almost correct calculations,
-      // the ugly decimal marking and casting makes sure we’re probably close enough
-    return ~~this.unit().dot(vec.unit()).toFixed(6)
-      ? true
-      : false
+    return Vector2.dot(this.unit(), vec.unit()) === 1
   }
 
   /**
    * Checks if the supplied vector is generally heading in the same direction
    * within `angle` degrees of accuracy
    * @param vec <Vector2>
+   * @param angle <Float> in radians
    * @returns <Boolean>
    */
   isNearHeading (vec, angle) {
-    return this.unit().dot(vec.unit()) > Math.cos(angle)
+    return Vector2.dot(this.unit(), vec.unit()) > Math.cos(angle)
   }
 }
 
