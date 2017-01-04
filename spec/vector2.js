@@ -184,6 +184,16 @@ test('Vector2::Divide -- static method', assert => {
   divide([2, 1], [2, 0], [1, 0], 'Dividing by 0 returns 0 rather than infinity')
 })
 
+test('Vector2::magnitude', assert => {
+  assert.plan(2)
+
+  let x = new Vector2(0, 2)
+  let mag = 4
+
+  assert.deepEqual(x.magnitude(mag).pos, [0, 4], 'Vector magnitude can be set')
+  assert.equal(x.length(), mag, 'Length is correctly calculated')
+})
+
 test('Vector2::dot -- instance method', assert => {
   assert.plan(5)
 
