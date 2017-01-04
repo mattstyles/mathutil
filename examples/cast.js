@@ -1,7 +1,4 @@
 
-// currently required as the build uses regenerator to transform generators
-require('babel-polyfill')
-
 var {Ray, Vector2} = require('../lib')
 
 var r = new Ray(new Vector2(1, 0))

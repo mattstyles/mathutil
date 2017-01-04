@@ -1,4 +1,9 @@
 
+## 2.1.0
+
+* _update_ vector length method
+* _update_ use rollup and buble
+
 ## 2.0.0
 
 * _update_ use arrays for structures rather than objects
