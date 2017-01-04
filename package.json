@@ -1,6 +1,6 @@
 {
   "name": "mathutil",
-  "version": "0.2.0",
+  "version": "2.0.0",
   "description": "Various and random collection of maths utilities",
   "main": "lib/index.js",
   "scripts": {

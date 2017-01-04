@@ -1,7 +1,13 @@
 
-##
+## 2.0.0
 
-*
+* _update_ use arrays for structures rather than objects
+
+* _update_ vectors
+* _add_ additional vector functionality
+* _add_ additional rect functionality
+* _add_ tests
+* _update_ dependencies
 
 ## 0.2.0
 
