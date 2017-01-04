@@ -3,23 +3,16 @@
   "version": "2.0.0",
   "description": "Various and random collection of maths utilities",
   "main": "lib/index.js",
+  "module": "lib/index.mjs",
+  "jsnext:main": "lib/index.mjs",
   "scripts": {
-    "test": "tape -r babel-register spec/*.js",
+    "test": "tape -r buba/register spec/*.js",
     "prepublish": "npm run build",
     "prepack": "npm run build",
-    "watch": "babel src --out-dir lib --watch",
+    "watch": "rollup -c -w",
     "prebuild": "rimraf lib && mkdirp lib",
-    "build": "babel src --out-dir lib",
-    "preexample": "npm run build",
-    "example": "budo examples/turn.js:bundle.js -v --dir examples --live"
-  },
-  "babel": {
-    "presets": [
-      "urban"
-    ]
-  },
-  "browserify": {
-    "transform": "babelify"
+    "build": "rollup -c",
+    "preexample": "npm run build"
   },
   "standard": {
     "parser": "babel-eslint"
@@ -36,16 +29,14 @@
   "repository": "git://github.com/mattstyles/mathutil.git",
   "license": "MIT",
   "devDependencies": {
-    "babel-cli": "^6.18.0",
     "babel-eslint": "^7.1.1",
-    "babel-preset-urban": "^1.0.0",
-    "babel-register": "^6.18.0",
-    "babelify": "^7.3.0",
-    "browserify": "^13.1.1",
-    "budo": "^9.4.1",
-    "microtime": "^2.1.2",
+    "babelrc-rollup": "^3.0.0",
+    "buba": "^4.0.1",
     "mkdirp": "^0.5.1",
     "rimraf": "^2.5.4",
+    "rollup": "^0.40.0",
+    "rollup-plugin-babel": "^2.7.1",
+    "rollup-plugin-buble": "^0.15.0",
     "standard": "^8.6.0",
     "tape": "^4.6.3"
   }
