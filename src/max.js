@@ -1,10 +1,9 @@
 
-export default function max (map) {
-  let val = 0
-  for (var i = 0; i < map.length; i++) {
-    val = map[ i ] > val
-            ? map[ i ]
-            : val
-  }
-  return val
+/**
+ * Returns maximum number in a set of values
+ */
+export default function max (set) {
+  return set.reduce((max, next) => {
+    return next > max ? next : max
+  }, Number.MIN_SAFE_INTEGER)
 }

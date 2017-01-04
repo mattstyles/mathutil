@@ -1,10 +1,9 @@
 
-export default function min (map) {
-  let val = 0
-  for (var i = 0; i < map.length; i++) {
-    val = map[ i ] < val
-            ? map[ i ]
-            : val
-  }
-  return val
+/**
+ * Returns minimum number in a set
+ */
+export default function min (set) {
+  return set.reduce((min, next) => {
+    return next < min ? next : min
+  }, Number.MAX_SAFE_INTEGER)
 }

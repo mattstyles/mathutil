@@ -1,11 +1,17 @@
 
 export default class Point {
   constructor (x, y) {
-    this.x = x
-    this.y = y
+    this.pos = [x, y]
   }
 
   position () {
-    return [this.x, this.y]
+    return this.pos
+  }
+
+  toCartesian () {
+    return {
+      x: this.pos[0],
+      y: this.pos[1]
+    }
   }
 }
