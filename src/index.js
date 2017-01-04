@@ -6,6 +6,7 @@
 export {Point} from './point'
 export {Rect} from './rect'
 export {Vector2} from './vector2'
+export {Ray} from './ray'
 
 export {lerp} from './lerp'
 export {toDegrees} from './toDegrees'

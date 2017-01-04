@@ -21,6 +21,9 @@
   "browserify": {
     "transform": "babelify"
   },
+  "standard": {
+    "parser": "babel-eslint"
+  },
   "keywords": [
     "Math",
     "mathematics",
