@@ -1,4 +1,4 @@
 
-export default function euclidean (p0, p1) {
-  return Math.abs(p0.x - p1.x) + Math.abs(p0.y - p1.y)
+export default function manhattan (a, b) {
+  return Math.abs(a[0] - b[0]) + Math.abs(a[1] - b[1])
 }
