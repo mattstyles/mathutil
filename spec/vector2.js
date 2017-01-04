@@ -191,7 +191,7 @@ test('Vector2::magnitude', assert => {
   let mag = 4
 
   assert.deepEqual(x.magnitude(mag).pos, [0, 4], 'Vector magnitude can be set')
-  assert.equal(x.length(), mag, 'Length is correctly calculated')
+  assert.equal(x.len(), mag, 'Length is correctly calculated')
 })
 
 test('Vector2::dot -- instance method', assert => {
@@ -262,20 +262,20 @@ test('Vector2::cross -- static method', assert => {
   assert.ok(cross > -1 && cross < -0.5, 'Vectors are at 45 degrees')
 })
 
-test('Vector2::length -- instance method', assert => {
+test('Vector2::len -- instance method', assert => {
   assert.plan(3)
 
-  assert.equal(new Vector2(0, 1).length(), 1, 'Unit vector is length 1')
-  assert.equal(new Vector2(0, 2).length(), 2, 'Vector length is correct')
-  assert.equal(new Vector2(3, 4).length(), 5, 'Vector length is correct')
+  assert.equal(new Vector2(0, 1).len(), 1, 'Unit vector is length 1')
+  assert.equal(new Vector2(0, 2).len(), 2, 'Vector length is correct')
+  assert.equal(new Vector2(3, 4).len(), 5, 'Vector length is correct')
 })
 
-test('Vector2::length -- static method', assert => {
+test('Vector2::len -- static method', assert => {
   assert.plan(3)
 
-  assert.equal(Vector2.length([0, 1]), 1, 'Unit vector is length 1')
-  assert.equal(Vector2.length([0, 2]), 2, 'Vector length is correct')
-  assert.equal(Vector2.length([3, 4]), 5, 'Vector length is correct')
+  assert.equal(Vector2.len([0, 1]), 1, 'Unit vector is length 1')
+  assert.equal(Vector2.len([0, 2]), 2, 'Vector length is correct')
+  assert.equal(Vector2.len([3, 4]), 5, 'Vector length is correct')
 })
 
 test('Vector2::unit -- instance method', assert => {

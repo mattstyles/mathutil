@@ -92,7 +92,7 @@ export class Vector2 {
    * @param vec <Vector2||Array||Number>
    * @returns <Float>
    */
-  static length (vec) {
+  static len (vec) {
     let x = massageScalar(vec)
     return Math.sqrt(Math.pow(x[0], 2) + Math.pow(x[1], 2))
   }
@@ -104,7 +104,7 @@ export class Vector2 {
    */
   static unit (vec) {
     let x = massageScalar(vec)
-    let len = Vector2.length(x)
+    let len = Vector2.len(x)
     return Vector2.divide(x, [len, len])
   }
 
@@ -272,7 +272,7 @@ export class Vector2 {
    * Returns the length of the vector
    * @returns <Float>
    */
-  length () {
+  len () {
     return Math.sqrt(Math.pow(this.pos[0], 2) + Math.pow(this.pos[1], 2))
   }
 
@@ -280,7 +280,7 @@ export class Vector2 {
    * Slightly cheaper determinant of length, really only useful for length comparisons
    * @returns <Float>
    */
-  sqrLength () {
+  sqrLen () {
     return Math.pow(this.pos[0], 2) + Math.pow(this.pos[1], 2)
   }
 
@@ -289,7 +289,7 @@ export class Vector2 {
    * @returns <Vector2>
    */
   unit () {
-    let len = this.length()
+    let len = this.len()
     return Vector2.divide(this.pos, [len, len])
   }
 
@@ -338,7 +338,7 @@ export class Vector2 {
    * @returns <Vector2>
    */
   turn (angle) {
-    let len = this.length()
+    let len = this.len()
     let dir = new Vector2(1, 0).rotate(angle)
     this.pos = [
       dir.pos[0] * len,
@@ -377,7 +377,7 @@ export class Vector2 {
    * @returns <Float>
    */
   distance (vec) {
-    return Vector2.sub(this, vec).length()
+    return Vector2.sub(this, vec).len()
   }
 
   /**
