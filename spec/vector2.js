@@ -1,7 +1,7 @@
 
 import test from 'tape'
 
-import Vector2 from '../src/vector2'
+import {Vector2} from '../src/vector2'
 
 const CLOSE_PRECISION = 0.01
 

@@ -1,8 +1,8 @@
 
 import test from 'tape'
 
-import min from '../src/min'
-import max from '../src/max'
+import {min} from '../src/min'
+import {max} from '../src/max'
 
 test('Min should find the minimum number from a set', assert => {
   assert.plan(3)

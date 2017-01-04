@@ -1,7 +1,7 @@
 
 import test from 'tape'
 
-import Rect from '../src/rect'
+import {Rect} from '../src/rect'
 
 test('Constructor should create a new instance', assert => {
   assert.plan(3)

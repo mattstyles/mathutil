@@ -1,8 +1,8 @@
 
 import test from 'tape'
 
-import euclidean from '../src/euclidean'
-import manhattan from '../src/manhattan'
+import {euclidean} from '../src/euclidean'
+import {manhattan} from '../src/manhattan'
 
 test('Euclidean distance', assert => {
   assert.plan(2)
