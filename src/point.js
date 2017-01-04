@@ -1,5 +1,5 @@
 
-export default class Point {
+export class Point {
   constructor (x, y) {
     this.pos = [x, y]
   }

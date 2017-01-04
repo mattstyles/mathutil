@@ -1,6 +1,6 @@
 
 var scalar = Math.PI / 180
 
-export default function toRadians (value) {
+export function toRadians (value) {
   return value * scalar
 }

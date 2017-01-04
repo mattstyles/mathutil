@@ -11,7 +11,7 @@ function massageScalar (param) {
   return param
 }
 
-class Vector2 {
+export class Vector2 {
   /**
    * Adds two vectors and returns a new instance
    * @param v1 <Vector2||Array||Number>
@@ -400,5 +400,3 @@ class Vector2 {
     return Vector2.dot(this.unit(), vec.unit()) > Math.cos(angle)
   }
 }
-
-export default Vector2

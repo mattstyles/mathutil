@@ -1,8 +1,8 @@
 
-export default function clamp (value, min, max) {
+export function clamp (value, min, max) {
   return value < min
-        ? min
-        : value > max
-            ? max
-            : value
+    ? min
+    : value > max
+      ? max
+      : value
 }

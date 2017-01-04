@@ -1,7 +1,7 @@
 
-import Vector2 from './vector2'
+import {Vector2} from './vector2'
 
-export default class Rect {
+export class Rect {
   /**
    * Calculates the area of the given rectangle
    * @returns <Float>
