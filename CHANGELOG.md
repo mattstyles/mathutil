@@ -1,4 +1,10 @@
 
+## 2.2.0
+
+* _add_ vector positional component getters
+* _add_ vector static rotate method
+* _update_ examples
+
 ## 2.1.0
 
 * _update_ vector length method
