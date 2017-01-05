@@ -1,5 +1,5 @@
 
-import { Vector2, toRadians } from '../lib'
+import {Vector2, toRadians} from '../lib/index.mjs'
 
 const CANVAS_SIZE = 600
 
@@ -34,7 +34,7 @@ class Entity {
         // Render vision segment
     ctx.beginPath()
     ctx.moveTo(this.pos.x, this.pos.y)
-    ctx.lineTo(...this.pos.add(leftVector.scalar(10)).position())
+    ctx.lineTo(...this.pos.add(leftVector.multiply(10)).position())
     ctx.arc(this.pos.x, this.pos.y, this.visionDistance, leftVector.angle(), rightVector.angle(), false)
     ctx.lineTo(this.pos.x, this.pos.y)
     ctx.fillStyle = 'rgba( 0, 0, 0, .15 )'
@@ -43,7 +43,7 @@ class Entity {
         // Render facing vector
     ctx.beginPath()
     ctx.moveTo(this.pos.x, this.pos.y)
-    ctx.lineTo(...this.pos.add(this.dir.scalar(10)).position())
+    ctx.lineTo(...this.pos.add(this.dir.multiply(10)).position())
     ctx.stroke()
 
         // Render entity shape
@@ -57,11 +57,11 @@ class Entity {
   }
 
   forward () {
-    this.pos = this.pos.add(this.dir.scalar(5))
+    this.pos = this.pos.add(this.dir.multiply(5))
   }
 
   backward () {
-    this.pos = this.pos.add(this.dir.scalar(-5))
+    this.pos = this.pos.add(this.dir.multiply(-5))
   }
 
   left () {

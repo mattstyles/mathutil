@@ -1,5 +1,5 @@
 
-var Vector2 = require('../lib').Vector2
+import {Vector2} from '../lib/index.mjs'
 
 var canvas = document.querySelector('canvas')
 var ctx = canvas.getContext('2d')
@@ -13,7 +13,7 @@ function color (value) {
 function drawLine (pt) {
   ctx.beginPath()
   ctx.moveTo(300, 300)
-  ctx.lineTo(300 + pt.x, 300 + pt.y)
+  ctx.lineTo(300 + pt[0], 300 + pt[1])
   ctx.stroke()
 }
 
@@ -23,7 +23,7 @@ var step = 720
 function drawRotation () {
   for (var a = 0; a < 360; a += ~~step) {
     ctx.strokeStyle = color(a / 360)
-    drawLine(vec.rotate(a * rad))
+    drawLine(vec.rotate(a * rad).pos)
   }
 }
 
