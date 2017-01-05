@@ -28,22 +28,23 @@ class Entity {
   render () {
         // Calc vision segment
     let halfVisionAngle = toRadians(this.fov / 2)
-    let leftVector = this.dir.rotate(-halfVisionAngle)
-    let rightVector = this.dir.rotate(halfVisionAngle)
+    let leftVector = Vector2
+      .fromAngle(this.dir.angle() - halfVisionAngle)
+    let rightVector = Vector2
+      .fromAngle(this.dir.angle() + halfVisionAngle)
+    let facingVector = Vector2.multiply(this.dir, this.visionDistance)
 
         // Render vision segment
     ctx.beginPath()
     ctx.moveTo(this.pos.x, this.pos.y)
-    ctx.lineTo(...this.pos.add(leftVector.multiply(10)).position())
     ctx.arc(this.pos.x, this.pos.y, this.visionDistance, leftVector.angle(), rightVector.angle(), false)
-    ctx.lineTo(this.pos.x, this.pos.y)
     ctx.fillStyle = 'rgba( 0, 0, 0, .15 )'
     ctx.fill()
 
         // Render facing vector
     ctx.beginPath()
     ctx.moveTo(this.pos.x, this.pos.y)
-    ctx.lineTo(...this.pos.add(this.dir.multiply(10)).position())
+    ctx.lineTo(...Vector2.add(this.pos, facingVector).position())
     ctx.stroke()
 
         // Render entity shape
@@ -57,19 +58,19 @@ class Entity {
   }
 
   forward () {
-    this.pos = this.pos.add(this.dir.multiply(5))
+    this.pos.add(this.dir)
   }
 
   backward () {
-    this.pos = this.pos.add(this.dir.multiply(-5))
+    this.pos.sub(this.dir)
   }
 
   left () {
-    this.dir = this.dir.rotate(toRadians(-10))
+    this.dir.rotate(toRadians(-10))
   }
 
   right () {
-    this.dir = this.dir.rotate(toRadians(10))
+    this.dir.rotate(toRadians(10))
   }
 
 }

@@ -138,6 +138,18 @@ export class Vector2 {
   }
 
   /**
+   * Generates a new vector from the given vector and angle
+   * @param vec <Vector2>
+   * @param angle <Float> in radians
+   * @returns <Vector2>
+   */
+  static rotate (vec, angle) {
+    let v = new Vector2(...vec.pos)
+    v.rotate(angle)
+    return v
+  }
+
+  /**
    * `x` and `y` refer to both direction and magnitude, they are stored in a
    * point array for performance
    * @constructs
