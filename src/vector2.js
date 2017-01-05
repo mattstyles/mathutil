@@ -165,6 +165,22 @@ export class Vector2 {
   }
 
   /**
+   * Getter for the x component of position
+   * @returns <Float>
+   */
+  get x () {
+    return this.pos[0]
+  }
+
+  /**
+   * Getter for the y component of position
+   * @returns <Float>
+   */
+  get y () {
+    return this.pos[1]
+  }
+
+  /**
    * Outputs an object with x and y properties
    * @returns <Object>
    */
