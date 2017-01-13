@@ -2,14 +2,14 @@
 var {Ray, Vector2} = require('../lib')
 
 var r = new Ray(new Vector2(1, 0))
-var start = [2, 0]
+var origin = [2, 0]
 var magnitude = 10
 var step = 1
 var initial = false
 
 // Create the cast generator
 var cast = r.cast({
-  start, magnitude, step, initial
+  origin, magnitude, step, initial
 })
 
 // Iterate over the generator, logging positions

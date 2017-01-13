@@ -50,7 +50,23 @@ export class Ray {
 
         // @TODO add is mutative, although magnitude resets it it might
         // still be safer to return a new vector, although likely slower
-        yield u.add(opts.origin).pos
+        // yield u.add(opts.origin).pos
+        yield Vector2.add(opts.origin, u).pos
+      }
+    }
+  }
+
+  project (opts) {
+    opts = Object.assign({}, castOpts, opts)
+
+    let u = new Vector2(...this.dir.pos)
+    let len = 0
+
+    return (cb) => {
+      while (len < opts.magnitude) {
+        len = len + opts.step
+        u.magnitude(len)
+        cb(Vector2.add(opts.origin, u))
       }
     }
   }
