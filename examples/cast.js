@@ -1,7 +1,8 @@
 
 var {Ray, Vector2} = require('../lib')
 
-var r = new Ray(new Vector2(1, 0))
+// var r = new Ray(new Vector2(0, 1))
+var r = new Ray(Vector2.fromAngle(Math.PI))
 var origin = [2, 0]
 var magnitude = 10
 var step = 1
