@@ -2,6 +2,14 @@
 import {Vector2} from './vector2'
 
 export class Rect {
+  static of (x1, y1, x2, y2) {
+    if (x1 instanceof Rect) {
+      return new Rect(x1.pos[0], x1.pos[1], x1.pos[2], x1.pos[3])
+    }
+
+    return new Rect(x1, y1, x2, y2)
+  }
+
   /**
    * Calculates the area of the given rectangle
    * @returns <Float>
@@ -11,7 +19,7 @@ export class Rect {
       throw new Error('Specify rect to translate')
     }
 
-    return rect.pos[2] - rect.pos[0] * rect.pos[3] - rect.pos[1]
+    return (rect.pos[2] - rect.pos[0]) * (rect.pos[3] - rect.pos[1])
   }
 
   /**
@@ -46,7 +54,7 @@ export class Rect {
    * @returns <Float>
    */
   area () {
-    return this.pos[2] - this.pos[0] * this.pos[3] - this.pos[1]
+    return (this.pos[2] - this.pos[0]) * (this.pos[3] - this.pos[1])
   }
 
   /**
