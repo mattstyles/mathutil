@@ -1,4 +1,9 @@
 
+## 2.3.0
+
+* _add_ lots more juicy Point helpers
+* _add_ lots more juicy Rect helpers
+
 ## 2.2.0
 
 * _add_ vector positional component getters
