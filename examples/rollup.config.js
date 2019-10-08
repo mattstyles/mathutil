@@ -17,7 +17,7 @@ const babelSettings = {
 }
 
 export default {
-  input: 'examples/cast.js',
+  input: 'examples/dragon.js',
   output: {
     file: 'examples/bundle.js',
     format: 'iife',
