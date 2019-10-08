@@ -7,6 +7,10 @@
   "jsnext:main": "lib/mathutil.mjs",
   "unpkg": "dist/mathutil.min.js",
   "jsdelivr": "dist/mathutil.min.js",
+  "files": [
+    "dist",
+    "lib"
+  ],
   "scripts": {
     "clean": "rimraf dist lib",
     "test": "tape -r buba/register spec/*.js",
@@ -25,6 +29,20 @@
       "**/lib/"
     ]
   },
+  "lint-staged": {
+    "*.js": [
+      "standard"
+    ],
+    "*.jsx": [
+      "standard"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm run test"
+    }
+  },
   "keywords": [
     "Math",
     "mathematics",
@@ -34,12 +52,21 @@
     "util"
   ],
   "author": "Matt Styles",
-  "repository": "git://github.com/mattstyles/mathutil.git",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/mattstyles/mathutil.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mattstyles/mathutil/issues"
+  },
+  "homepage": "https://github.com/mattstyles/mathutil#readme",
   "dependencies": {},
   "devDependencies": {
     "babel-eslint": "^10.0.3",
     "buba": "^4.0.2",
+    "husky": "^3.0.8",
+    "lint-staged": "^9.4.1",
     "quay": "^0.5.0",
     "rimraf": "^3.0.0",
     "rollup": "^1.23.1",
