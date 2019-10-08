@@ -14,7 +14,6 @@
   "scripts": {
     "clean": "rimraf dist lib",
     "test": "tape -r @babel/register spec/*.js",
-    "prepublish": "npm run build",
     "prepack": "npm run build",
     "watch": "rollup -c -w",
     "prebuild": "npm run clean",
