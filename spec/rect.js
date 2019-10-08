@@ -1,7 +1,7 @@
 
 import tape from 'tape'
 
-import {Rect} from '../src/rect'
+import { Rect, Point } from '../src'
 
 tape('Constructor should create a new instance', t => {
   t.plan(4)
@@ -179,4 +179,43 @@ tape('Rect can round its vertices to integers', t => {
   const e3 = [0, 0, 6, 6]
 
   t.deepEqual(r3.round().pos, e3, 'Rounds down [x1, y1] and up [x2, y2]')
+})
+
+tape('Rect::contains', t => {
+  t.plan(20)
+
+  const r1 = Rect.of(2, 2, 8, 8)
+
+  t.ok(r1.contains(Rect.of(4, 5, 6, 7)), 'Checks if one rect contains another')
+  t.ok(r1.contains(Point.of(5, 6)), 'Checks if rect contains a point')
+  t.ok(
+    r1.contains({ x: 5, y: 3 }),
+    'Checks if rect contains a point specified by an object'
+  )
+  t.ok(r1.contains(3, 7), 'Checks if rect contains a point specified by integers')
+
+  t.notOk(r1.contains(Rect.of(0, 0, 10, 10)), 'False if target surrounds base')
+  t.notOk(
+    r1.contains(Rect.of(0, 6, 4, 7)),
+    'False if base does not completely contain target'
+  )
+  t.notOk(r1.contains(Point.of(4, 12)), 'false for point check')
+  t.notOk(r1.contains({ x: 12, y: 7 }), 'false for object check')
+  t.notOk(r1.contains(23, 3), 'false for integer check')
+
+  t.ok(r1.contains(Point.of(2.3, 5.43)), 'handles floats inside')
+  t.notOk(r1.contains({ x: 1.1, y: 16.2 }), 'handles floats outside')
+  t.notOk(r1.contains(-10, -12), 'handles negative numbers')
+
+  t.ok(r1.contains(2, 2), 'handles leading edge boundary')
+  t.ok(r1.contains(8, 8), 'handles trailing edge boundary')
+  t.ok(r1.contains(Rect.of(2, 2, 8, 8)), 'same size returns true')
+
+  const r2 = Rect.of(-4, 2, -1, 10)
+
+  t.ok(r2.contains(-2, 4), 'rect in negative quadrant handles ok')
+  t.ok(r2.contains(-1, 2.3), 'rect in negative quadrant handles ok')
+  t.ok(r2.contains(-3.2, 8), 'rect in negative quadrant handles ok')
+  t.notOk(r2.contains(-12, 16), 'rect in negative quadrant handles ok')
+  t.ok(r2.contains(Rect.of(-2, 2, -1, 6)), 'rect in negative quadrant handles ok')
 })

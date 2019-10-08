@@ -1,5 +1,6 @@
 
-import {Vector2} from './vector2'
+import { Vector2 } from './vector2'
+import { Point } from './point'
 
 export class Rect {
   static of (x1, y1, x2, y2) {
@@ -176,6 +177,35 @@ export class Rect {
       this.pos[3] - y
     ]
     return this
+  }
+
+  _containsRect (rect) {
+    const { pos } = this
+    return (
+      rect.pos[0] >= pos[0] &&
+      rect.pos[1] >= pos[1] &&
+      rect.pos[2] <= pos[2] &&
+      rect.pos[3] <= pos[3]
+    )
+  }
+
+  contains (x, y) {
+    if (x instanceof Rect) {
+      return this._containsRect(x)
+    }
+
+    if (x instanceof Point || typeof x === 'object') {
+      return this.contains(x.x, x.y)
+    }
+
+    const { pos } = this
+
+    return (
+      x >= pos[0] &&
+      y >= pos[1] &&
+      x <= pos[2] &&
+      y <= pos[3]
+    )
   }
 
   /**
