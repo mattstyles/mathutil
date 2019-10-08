@@ -116,18 +116,9 @@ export class Rect {
     return this
   }
 
-  _equalByRect (r) {
-    return (
-      this.pos[0] === r.pos[0] &&
-      this.pos[1] === r.pos[1] &&
-      this.pos[2] === r.pos[2] &&
-      this.pos[3] === r.pos[3]
-    )
-  }
-
   equal (x1, y1, x2, y2) {
     if (x1 instanceof Rect) {
-      return this._equalByRect(x1)
+      return this.equal(...x1.pos)
     }
 
     return (
