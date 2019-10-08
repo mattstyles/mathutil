@@ -1,4 +1,11 @@
 
+## 2.4.0
+
+* _update_ es6 and cjs builds
+* _add_ umd distributable
+* _update_ reduce point and rect weight
+* _add_ rect::contains
+
 ## 2.3.0
 
 * _add_ lots more juicy Point helpers
