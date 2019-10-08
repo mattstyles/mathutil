@@ -1,18 +1,9 @@
 
 import resolve from 'rollup-plugin-node-resolve'
 import commonjs from 'rollup-plugin-commonjs'
-import buble from 'rollup-plugin-buble'
+import babel from 'rollup-plugin-babel'
 // import { terser } from 'rollup-plugin-terser'
 import filesize from 'rollup-plugin-filesize'
-
-const bubleOptions = {
-  objectAssign: true,
-  transforms: {
-    generator: false,
-    modules: false,
-    classes: false
-  }
-}
 
 export default {
   input: 'examples/test.js',
@@ -24,7 +15,7 @@ export default {
   plugins: [
     resolve(),
     commonjs(),
-    buble(bubleOptions),
+    babel(),
     // terser({
     //   sourcemap: true
     // }),

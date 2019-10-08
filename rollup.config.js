@@ -1,20 +1,11 @@
 
 import resolve from 'rollup-plugin-node-resolve'
 import commonjs from 'rollup-plugin-commonjs'
-import buble from 'rollup-plugin-buble'
+import babel from 'rollup-plugin-babel'
 import { terser } from 'rollup-plugin-terser'
 import filesize from 'rollup-plugin-filesize'
 
 import pkg from './package.json'
-
-const bubleOptions = {
-  exclude: ['node_modules/**'],
-  objectAssign: true,
-  transforms: {
-    generator: false,
-    modules: false
-  }
-}
 
 const umd = {
   name: 'Mathutil',
@@ -37,7 +28,7 @@ export default [
     plugins: [
       resolve(),
       commonjs(),
-      buble(bubleOptions),
+      babel(),
       terser({
         sourcemap: true
       }),
@@ -61,7 +52,7 @@ export default [
       }
     ],
     plugins: [
-      buble(bubleOptions),
+      babel(),
       filesize()
     ]
   }
