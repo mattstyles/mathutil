@@ -38,13 +38,9 @@ export class Point {
     }
   }
 
-  _equalByPoint (point) {
-    return this.pos[0] === point.x && this.pos[1] === point.y
-  }
-
   equal (x, y) {
     if (x instanceof Point || typeof x === 'object') {
-      return this._equalByPoint(x)
+      return this.equal(x.x, x.y)
     }
 
     return this.pos[0] === x && this.pos[1] === y
@@ -54,15 +50,9 @@ export class Point {
     return this.equal(x, y)
   }
 
-  _translateByPoint (point) {
-    this.pos[0] += point.x
-    this.pos[1] += point.y
-    return this
-  }
-
   translate (x, y) {
-    if (x instanceof Point) {
-      return this._translateByPoint(x)
+    if (x instanceof Point || typeof x === 'object') {
+      return this.translate(x.x, x.y)
     }
 
     this.pos[0] += x
