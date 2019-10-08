@@ -1,4 +1,11 @@
 
+## 2.5.0
+
+* _update_ examples
+* _add_ Ray::of
+* _add_ compat build outputs
+* _add_ dead code removal hints for shakey shakey
+
 ## 2.4.0
 
 * _update_ es6 and cjs builds
