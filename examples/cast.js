@@ -1,5 +1,5 @@
 
-var {Ray, Vector2} = require('../lib')
+var { Ray, Vector2 } = require('../lib')
 
 // var r = new Ray(new Vector2(0, 1))
 var r = new Ray(Vector2.fromAngle(Math.PI))
@@ -17,7 +17,7 @@ var gen = r.cast({
 })()
 
 // Iterate over the generator, logging positions
-for (let p of cast()) {
+for (const p of cast()) {
   console.log('  **  ', p)
 }
 

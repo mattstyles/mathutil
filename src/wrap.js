@@ -3,7 +3,7 @@
  * -Stolen-, borrowed from Phaser
  */
 export function wrap (value, min, max) {
-  let range = max - min
+  const range = max - min
   if (range <= 0) {
     return 0
   }

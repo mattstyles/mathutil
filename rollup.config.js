@@ -11,7 +11,8 @@ const bubleOptions = {
   exclude: ['node_modules/**'],
   objectAssign: true,
   transforms: {
-    generator: false
+    generator: false,
+    modules: false
   }
 }
 

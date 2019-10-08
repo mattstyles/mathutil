@@ -20,7 +20,7 @@
     "prebuild": "npm run clean",
     "build": "rollup -c",
     "size": "size-limit",
-    "preexample": "npm run build",
+    "__preexample": "npm run build",
     "example": "rollup -c examples/rollup.config.js"
   },
   "standard": {

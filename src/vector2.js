@@ -19,8 +19,8 @@ export class Vector2 {
    * @returns <Vector2>
    */
   static add (v1, v2) {
-    let x = massageScalar(v1)
-    let y = massageScalar(v2)
+    const x = massageScalar(v1)
+    const y = massageScalar(v2)
     return new Vector2(x[0] + y[0], x[1] + y[1])
   }
 
@@ -31,8 +31,8 @@ export class Vector2 {
    * @returns <Vector2>
    */
   static sub (v1, v2) {
-    let x = massageScalar(v1)
-    let y = massageScalar(v2)
+    const x = massageScalar(v1)
+    const y = massageScalar(v2)
     return new Vector2(x[0] - y[0], x[1] - y[1])
   }
 
@@ -43,8 +43,8 @@ export class Vector2 {
    * @returns <Vector2>
    */
   static multiply (v1, v2) {
-    let x = massageScalar(v1)
-    let y = massageScalar(v2)
+    const x = massageScalar(v1)
+    const y = massageScalar(v2)
     return new Vector2(x[0] * y[0], x[1] * y[1])
   }
 
@@ -55,8 +55,8 @@ export class Vector2 {
    * @returns <Vector2>
    */
   static divide (v1, v2) {
-    let x = massageScalar(v1)
-    let y = massageScalar(v2)
+    const x = massageScalar(v1)
+    const y = massageScalar(v2)
     return new Vector2(
       y[0] === 0 ? 0 : x[0] / y[0],
       y[1] === 0 ? 0 : x[1] / y[1]
@@ -70,8 +70,8 @@ export class Vector2 {
    * @returns <Float>
    */
   static dot (v1, v2) {
-    let x = massageScalar(v1)
-    let y = massageScalar(v2)
+    const x = massageScalar(v1)
+    const y = massageScalar(v2)
     return x[0] * y[0] + x[1] * y[1]
   }
 
@@ -82,8 +82,8 @@ export class Vector2 {
    * @returns <Float>
    */
   static cross (v1, v2) {
-    let x = massageScalar(v1)
-    let y = massageScalar(v2)
+    const x = massageScalar(v1)
+    const y = massageScalar(v2)
     return x[0] * y[0] - x[1] * y[1]
   }
 
@@ -93,7 +93,7 @@ export class Vector2 {
    * @returns <Float>
    */
   static len (vec) {
-    let x = massageScalar(vec)
+    const x = massageScalar(vec)
     return Math.sqrt(Math.pow(x[0], 2) + Math.pow(x[1], 2))
   }
 
@@ -103,8 +103,8 @@ export class Vector2 {
    * @returns <Vector2>
    */
   static unit (vec) {
-    let x = massageScalar(vec)
-    let len = Vector2.len(x)
+    const x = massageScalar(vec)
+    const len = Vector2.len(x)
     return Vector2.divide(x, [len, len])
   }
 
@@ -114,7 +114,7 @@ export class Vector2 {
    * @returns <Vector2>
    */
   static normal (vec) {
-    let x = massageScalar(vec)
+    const x = massageScalar(vec)
     return new Vector2(-x[1], x[0])
   }
 
@@ -124,7 +124,7 @@ export class Vector2 {
    * @returns <Vector2>
    */
   static backfaceNormal (vec) {
-    let x = massageScalar(vec)
+    const x = massageScalar(vec)
     return new Vector2(x[1], -x[0])
   }
 
@@ -144,7 +144,7 @@ export class Vector2 {
    * @returns <Vector2>
    */
   static rotate (vec, angle) {
-    let v = new Vector2(...vec.pos)
+    const v = new Vector2(...vec.pos)
     v.rotate(angle)
     return v
   }
@@ -209,7 +209,7 @@ export class Vector2 {
    * @returns <this>
    */
   add (vec) {
-    let p = massageScalar(vec)
+    const p = massageScalar(vec)
 
     this.pos = [
       this.pos[0] + p[0],
@@ -225,7 +225,7 @@ export class Vector2 {
    * @returns <this>
    */
   sub (vec) {
-    let p = massageScalar(vec)
+    const p = massageScalar(vec)
 
     this.pos = [
       this.pos[0] - p[0],
@@ -241,7 +241,7 @@ export class Vector2 {
    * @returns <this>
    */
   multiply (vec) {
-    let p = massageScalar(vec)
+    const p = massageScalar(vec)
 
     this.pos = [
       this.pos[0] * p[0],
@@ -257,7 +257,7 @@ export class Vector2 {
    * @returns <this>
    */
   divide (vec) {
-    let p = massageScalar(vec)
+    const p = massageScalar(vec)
 
     this.pos = [
       p[0] === 0 ? 0 : this.pos[0] / p[0],
@@ -271,7 +271,7 @@ export class Vector2 {
    * Sets the vector to the specified length
    */
   magnitude (len) {
-    let vec = Vector2.multiply(this.unit(), len)
+    const vec = Vector2.multiply(this.unit(), len)
     this.pos = vec.pos
     return this
   }
@@ -282,7 +282,7 @@ export class Vector2 {
    * @returns <Float>
    */
   dot (vec) {
-    let p = massageScalar(vec)
+    const p = massageScalar(vec)
     return this.pos[0] * p[0] + this.pos[1] * p[1]
   }
 
@@ -292,7 +292,7 @@ export class Vector2 {
    * @returns <Float>
    */
   cross (vec) {
-    let p = massageScalar(vec)
+    const p = massageScalar(vec)
     return this.pos[0] * p[0] - this.pos[1] * p[1]
   }
 
@@ -317,7 +317,7 @@ export class Vector2 {
    * @returns <Vector2>
    */
   unit () {
-    let len = this.len()
+    const len = this.len()
     return Vector2.divide(this.pos, [len, len])
   }
 
@@ -350,9 +350,9 @@ export class Vector2 {
    * @returns <Vector2>
    */
   rotate (angle) {
-    let [x, y] = this.pos
-    let sin = Math.sin(angle)
-    let cos = Math.cos(angle)
+    const [x, y] = this.pos
+    const sin = Math.sin(angle)
+    const cos = Math.cos(angle)
     this.pos = [
       x * cos - y * sin,
       x * sin + y * cos
@@ -366,8 +366,8 @@ export class Vector2 {
    * @returns <Vector2>
    */
   turn (angle) {
-    let len = this.len()
-    let dir = new Vector2(1, 0).rotate(angle)
+    const len = this.len()
+    const dir = new Vector2(1, 0).rotate(angle)
     this.pos = [
       dir.pos[0] * len,
       dir.pos[1] * len

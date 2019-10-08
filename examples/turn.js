@@ -1,5 +1,5 @@
 
-import {Vector2, toRadians} from '../lib/index.mjs'
+import { Vector2, toRadians } from '../lib/mathutil.mjs'
 
 const CANVAS_SIZE = 600
 
@@ -26,28 +26,28 @@ class Entity {
   }
 
   render () {
-        // Calc vision segment
-    let halfVisionAngle = toRadians(this.fov / 2)
-    let leftVector = Vector2
+    // Calc vision segment
+    const halfVisionAngle = toRadians(this.fov / 2)
+    const leftVector = Vector2
       .fromAngle(this.dir.angle() - halfVisionAngle)
-    let rightVector = Vector2
+    const rightVector = Vector2
       .fromAngle(this.dir.angle() + halfVisionAngle)
-    let facingVector = Vector2.multiply(this.dir, this.visionDistance)
+    const facingVector = Vector2.multiply(this.dir, this.visionDistance)
 
-        // Render vision segment
+    // Render vision segment
     ctx.beginPath()
     ctx.moveTo(this.pos.x, this.pos.y)
     ctx.arc(this.pos.x, this.pos.y, this.visionDistance, leftVector.angle(), rightVector.angle(), false)
     ctx.fillStyle = 'rgba( 0, 0, 0, .15 )'
     ctx.fill()
 
-        // Render facing vector
+    // Render facing vector
     ctx.beginPath()
     ctx.moveTo(this.pos.x, this.pos.y)
     ctx.lineTo(...Vector2.add(this.pos, facingVector).position())
     ctx.stroke()
 
-        // Render entity shape
+    // Render entity shape
     ctx.beginPath()
     ctx.arc(this.pos.x, this.pos.y, this.size, 0, PI2, false)
     ctx.fillStyle = 'red'
@@ -72,10 +72,9 @@ class Entity {
   right () {
     this.dir.rotate(toRadians(10))
   }
-
 }
 
-let pc = new Entity(100, 100)
+const pc = new Entity(100, 100)
 
 function render () {
   ctx.clearRect(0, 0, 600, 600)
@@ -84,24 +83,24 @@ function render () {
 
 // Add keys
 document.addEventListener('keydown', event => {
-    // quick and dirty
+  // quick and dirty
   switch (event.keyCode) {
-        // left
+    // left
     case 37:
       pc.left()
       break
 
-        // up
+      // up
     case 39:
       pc.right()
       break
 
-        // up
+      // up
     case 38:
       pc.forward()
       break
 
-        // up
+      // up
     case 40:
       pc.backward()
       break

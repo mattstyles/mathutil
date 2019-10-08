@@ -2,5 +2,5 @@ node_modules
 lib
 dist
 *.log
-examples/bundle.js
+examples/bundle.js*
 TODO.md

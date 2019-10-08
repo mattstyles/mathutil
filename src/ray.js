@@ -1,5 +1,5 @@
 
-import {Vector2} from './vector2'
+import { Vector2 } from './vector2'
 
 const castOpts = {
   initial: false,
@@ -28,7 +28,7 @@ export class Ray {
   cast (opts) {
     opts = Object.assign({}, castOpts, opts)
 
-    let u = new Vector2(...this.dir.pos)
+    const u = new Vector2(...this.dir.pos)
     let len = 0
 
     /**
@@ -39,7 +39,7 @@ export class Ray {
      * The origin, or initial value, is often undesired and so its output is
      * hidden behind the initial flag.
      */
-    return function* () {
+    return function * () {
       if (opts.initial) {
         yield opts.origin
       }
@@ -59,7 +59,7 @@ export class Ray {
   project (opts) {
     opts = Object.assign({}, castOpts, opts)
 
-    let u = new Vector2(...this.dir.pos)
+    const u = new Vector2(...this.dir.pos)
     let len = 0
 
     return (cb) => {

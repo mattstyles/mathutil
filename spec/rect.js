@@ -29,8 +29,8 @@ tape('Rect clone', t => {
 tape('Rect::area -- instance method', t => {
   t.plan(2)
 
-  let x = new Rect(0, 0, 1, 1)
-  let y = new Rect(0, 1, 4, 4)
+  const x = new Rect(0, 0, 1, 1)
+  const y = new Rect(0, 1, 4, 4)
 
   t.equal(x.area(), 1, 'Area is calculated correctly')
   t.equal(y.area(), 12, 'Area is calculated correctly')
@@ -39,8 +39,8 @@ tape('Rect::area -- instance method', t => {
 tape('Rect::area -- static method', t => {
   t.plan(2)
 
-  let x = new Rect(0, 0, 1, 1)
-  let y = new Rect(0, 1, 4, 4)
+  const x = new Rect(0, 0, 1, 1)
+  const y = new Rect(0, 1, 4, 4)
 
   t.equal(Rect.area(x), 1, 'Area is calculated correctly')
   t.equal(Rect.area(y), 12, 'Area is calculated correctly')
@@ -49,7 +49,7 @@ tape('Rect::area -- static method', t => {
 tape('Rect::translate -- instance method', t => {
   t.plan(1)
 
-  let x = new Rect(0, 0, 1, 1)
+  const x = new Rect(0, 0, 1, 1)
 
   t.deepEqual(x.translate(1, 2).pos, [1, 2, 2, 3], 'Area is calculated correctly')
 })
@@ -57,8 +57,8 @@ tape('Rect::translate -- instance method', t => {
 tape('Rect::translate -- static method', t => {
   t.plan(3)
 
-  let x = new Rect(0, 0, 1, 1)
-  let y = Rect.translate(x, 2, 3)
+  const x = new Rect(0, 0, 1, 1)
+  const y = Rect.translate(x, 2, 3)
 
   t.ok(y instanceof Rect, 'Translate returns a new instance')
   t.deepEqual(x.pos, [0, 0, 1, 1], 'Translate is not mutative')
@@ -145,8 +145,8 @@ tape('Rect::constricts -- static method', t => {
 tape('Rect::slope', t => {
   t.plan(1)
 
-  let x = new Rect(1, 1, 4, 3)
-  let v = x.slope()
+  const x = new Rect(1, 1, 4, 3)
+  const v = x.slope()
 
   t.deepEqual(v.pos, [3, 2], 'Diagonal slope is returned')
 })
