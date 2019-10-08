@@ -9,6 +9,10 @@ const castOpts = {
 }
 
 export class Ray {
+  static of (v) {
+    return new Ray(v)
+  }
+
   constructor (v) {
     if (!(v instanceof Vector2)) {
       throw new Error('Ray should be instantiated with a direction vector')
