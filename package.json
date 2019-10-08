@@ -21,7 +21,7 @@
     "build": "rollup -c",
     "size": "size-limit",
     "preexample": "npm run build",
-    "example": "rollup -c examples/rollup.config.js"
+    "example": "rollup -c examples/rollup.config.js -w"
   },
   "standard": {
     "parser": "babel-eslint",

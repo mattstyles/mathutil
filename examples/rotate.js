@@ -1,5 +1,5 @@
 
-import { Vector2 } from '../lib/index.mjs'
+import { Vector2 } from '../lib/mathutil.mjs'
 
 var canvas = document.querySelector('canvas')
 var ctx = canvas.getContext('2d')
