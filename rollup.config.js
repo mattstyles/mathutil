@@ -12,6 +12,16 @@ const umd = {
   file: 'dist/mathutil.min.js'
 }
 
+const compatBabelSettings = {
+  presets: [
+    [
+      '@babel/preset-env', {
+        loose: true
+      }
+    ]
+  ]
+}
+
 export default [
   // umd
   {
@@ -53,6 +63,45 @@ export default [
     ],
     plugins: [
       babel(),
+      filesize()
+    ]
+  },
+  // compat mjs
+  {
+    input: 'src/index.js',
+    external: [
+      ...Object.keys(pkg.dependencies)
+    ],
+    output: [
+      {
+        file: `lib/${pkg.name}.compat.mjs`,
+        format: 'es'
+      }
+    ],
+    plugins: [
+      babel(compatBabelSettings),
+      filesize()
+    ]
+  },
+  // compat umd
+  {
+    input: 'src/index.js',
+    external: [
+      ...Object.keys(pkg.dependencies)
+    ],
+    output: {
+      name: umd.name,
+      file: `dist/${pkg.name}.compat.js`,
+      format: 'umd',
+      sourcemap: true
+    },
+    plugins: [
+      resolve(),
+      commonjs(),
+      babel(compatBabelSettings),
+      terser({
+        sourcemap: true
+      }),
       filesize()
     ]
   }

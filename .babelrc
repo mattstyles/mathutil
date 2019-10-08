@@ -2,7 +2,8 @@
       "presets": [
       [
         "@babel/preset-env", {
-          "loose": true
+          "loose": true,
+          "targets": ">5%"
         }
       ]
     ]
