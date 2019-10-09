@@ -1,9 +1,15 @@
 
+const reduceMax = (max, next) => {
+  return next > max ? next : max
+}
+
 /**
- * Returns maximum number in a set of values
+ * Returns minimum number in a set
  */
 export function max (set) {
-  return set.reduce((max, next) => {
-    return next > max ? next : max
-  }, Number.MIN_SAFE_INTEGER)
+  let m = Number.MIN_SAFE_INTEGER
+  for (const i of set) {
+    m = reduceMax(m, i)
+  }
+  return m
 }
