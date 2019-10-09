@@ -60,6 +60,15 @@ export class Ray {
     }
   }
 
+  /**
+   * Project casts the ray synchronously and returns a function that accepts
+   * a callback for each iteration of the ray cast
+   * @param opts <Object>
+   *   @param initial <Boolean> should output initial position
+   *   @param origin <Array> length-2 array describing origin position for cast
+   *   @param magnitude <Number> magnitude of the ray section being cast
+   *   @param step <Number> amount to step per operation
+   */
   project (opts) {
     opts = Object.assign({}, castOpts, opts)
 
@@ -70,7 +79,7 @@ export class Ray {
       while (len < opts.magnitude) {
         len = len + opts.step
         u.magnitude(len)
-        cb(Vector2.add(opts.origin, u))
+        cb(Vector2.add(opts.origin, u).pos)
       }
     }
   }
