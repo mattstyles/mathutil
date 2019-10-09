@@ -3,7 +3,7 @@ var { Vector2 } = require('../lib/mathutil.mjs')
 
 const PI90 = Math.PI * 0.5
 
-const CANVAS_SIZE = 600
+const CANVAS_SIZE = 1600
 const canvas = document.querySelector('canvas')
 canvas.width = CANVAS_SIZE * window.devicePixelRatio
 canvas.height = CANVAS_SIZE * window.devicePixelRatio
@@ -48,29 +48,72 @@ class Dragon {
   }
 }
 
-const elderDragon = new Dragon(400, 200)
-const rootHalf = Math.pow(0.5, 0.5)
+const elderDragon = new Dragon(600, 300)
+// const rootHalf = Math.pow(0.5, 0.5)
+//
+// const dragonCurve = (order, length, sign, dragon) => {
+//   dragon = dragon || elderDragon
+//   if (order === 0) {
+//     dragon.traceForward()
+//     return
+//   }
+//
+//   dragonCurve(order - 1, length * rootHalf, 1, dragon)
+//   dragon.rotate(sign)
+//   dragonCurve(order - 1, length * rootHalf, -1, dragon)
+// }
+// // dragonCurve(14, 0, 1)
+//
+// const maxOrder = 10
+// const drawDragonCurve = order => {
+//   if (order >= maxOrder) {
+//     return
+//   }
+//   dragonCurve(order, 10, 1, new Dragon(400, 200))
+//
+//   setTimeout(() => drawDragonCurve(++order), 200)
+// }
+// drawDragonCurve(1)
 
-const dragonCurve = (order, length, sign, dragon) => {
-  dragon = dragon || elderDragon
-  if (order === 0) {
-    dragon.traceForward()
-    return
+const isOdd = value => {
+  const h = value * 0.5
+  return h !== (value * 0.5 | 0)
+}
+
+const findPower = value => {
+  let i = -1
+  while (++i < 20) {
+    const test = value / Math.pow(2, i)
+    if (isOdd(test)) {
+      return test
+    }
   }
 
-  dragonCurve(order - 1, length * rootHalf, 1, dragon)
-  dragon.rotate(sign)
-  dragonCurve(order - 1, length * rootHalf, -1, dragon)
+  const err = `Unable to find power for ${value}`
+  throw new Error(err)
 }
-// dragonCurve(14, 0, 1)
 
-const maxOrder = 18
-const drawDragonCurve = order => {
-  if (order >= maxOrder) {
-    return
+const findTurn = i => {
+  const out = findPower(i) % 4
+  if (out !== 1 && out !== 3) {
+    const err = `Turn not recognised: ${out}`
+    throw new Error(err)
   }
-  dragonCurve(order, 10, 1, new Dragon(400, 200))
 
-  setTimeout(() => drawDragonCurve(++order), 200)
+  return out === 1 ? 1 : -1
 }
-drawDragonCurve(1)
+
+const maxIterations = 400000
+const speed = 10
+const next = (i, step) => {
+  let ii = 0
+  while (ii++ < step) {
+    elderDragon.traceRotate(findTurn(i + ii))
+  }
+
+  if (i < maxIterations) {
+    i += step
+    setTimeout(() => next(i, ++step), speed)
+  }
+}
+next(1, 2)
