@@ -19,7 +19,7 @@ tape('clamp', t => {
 })
 
 tape('wrap', t => {
-  t.plan(6)
+  t.plan(8)
 
   t.equal(wrap(2, 0, 5), 2, 'Integer in range')
   t.equal(wrap(8, 0, 5), 3, 'Integer over')
@@ -28,4 +28,7 @@ tape('wrap', t => {
   t.equal(wrap(2.4, 1, 5), 2.4, 'Float in range')
   t.equal(wrap(10.2, 8, 10), 8.2, 'Float over')
   t.equal(wrap(-1, 0.5, 5), 3.5, 'Float under')
+
+  t.equal(wrap(22, 0, 10), 2, 'Multiples over')
+  t.equal(wrap(5, 10, 12), 11, 'Multiples under')
 })
