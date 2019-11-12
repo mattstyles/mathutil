@@ -1,4 +1,16 @@
 
+##
+
+* _break_ Ray::project returns position only
+* _break_ lerp operands have changed to enable currying of the function
+* _break_ clamp operands have changed to enable currying of the function
+* _break_ wrap operands have changed to enable currying of the function
+
+* _add_ additional examples
+* _add_ Vector2::of constructor method
+* _update_ documentation
+* _update_ min and max now accepts Sets
+
 ## 2.5.0
 
 * _update_ examples

@@ -29,7 +29,7 @@ Collection of useful maths-related utilities. All are dead-code removal friendly
 ```js
 import { lerp } from 'mathutil'
 
-console.log(lerp(.5, 10, 15))
+console.log(lerp(10, 15, 0.5))
 // 12.5
 ```
 
@@ -38,7 +38,7 @@ console.log(lerp(.5, 10, 15))
 ### lerp
 
 ```
-(<Float> value, <Number> min, <Number> max) => <Number>
+(<Number> min, <Number> max, <Float> value) => <Number>
 ```
 
 Interpolates `value` between the range specified by `min` and `max` numbers. Value is expected to be in the range `0...1`.
@@ -46,7 +46,7 @@ Interpolates `value` between the range specified by `min` and `max` numbers. Val
 ```js
 import { lerp } from 'mathutil'
 
-console.log(lerp(.5, 0, 20))
+console.log(lerp(0, 20, 0.5))
 // 10
 ```
 
@@ -119,7 +119,7 @@ console.log(max(new Set([1, 2, 3])))
 ### clamp
 
 ```
-(<Number> value, <Number> min, <Number> max) => <Number>
+(<Number> min, <Number> max, <Number> value) => <Number>
 ```
 
 Returns the value and ensures it is within the range specified by `min` and `max`.
@@ -127,20 +127,20 @@ Returns the value and ensures it is within the range specified by `min` and `max
 ```js
 import { clamp } from 'mathutil'
 
-console.log(clamp(3, 1, 12))
+console.log(clamp(1, 12, 3))
 // 3
 
-console.log(clamp(5.4, 10, 12.4))
+console.log(clamp(10, 12.4, 5.4))
 // 10
 
-console.log(clamp(100, 1, 4))
+console.log(clamp(1, 4, 100))
 // 4
 ```
 
 ### wrap
 
 ```
-(<Number> value, <Number> min, <Number> max) => <Number>
+(<Number> min, <Number> max, <Number> value) => <Number>
 ```
 
 Returns the value but translated as if it rotates through the range specified by `min` and `max`
@@ -148,7 +148,7 @@ Returns the value but translated as if it rotates through the range specified by
 ```js
 import { wrap } from 'mathutil'
 
-console.log(wrap(6, 0, 4))
+console.log(wrap(0, 4, 6))
 // 2
 ```
 
