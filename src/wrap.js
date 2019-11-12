@@ -1,8 +1,5 @@
 
-/**
- * -Stolen-, borrowed from Phaser
- */
-export function wrap (value, min, max) {
+function _performWrap (value, min, max) {
   const range = max - min
   if (range <= 0) {
     return 0
@@ -12,4 +9,21 @@ export function wrap (value, min, max) {
     res += range
   }
   return res + min
+}
+
+function _curryWrap (min, max) {
+  return function wrap (value) {
+    return _performWrap(value, min, max)
+  }
+}
+
+/**
+ * -Stolen-, borrowed from Phaser
+ */
+export function wrap (min, max, value) {
+  if (typeof value === 'undefined') {
+    return _curryWrap(min, max)
+  }
+
+  return _performWrap(value, min, max)
 }

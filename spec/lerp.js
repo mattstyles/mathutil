@@ -21,3 +21,12 @@ tape('lerp interpolates between negative values', t => {
   t.equals(lerp(-30, -35, -0.5), -27.5, 'can project beyond min')
   t.equals(lerp(-5, -15, 0.25), -7.5, 'positive value')
 })
+
+tape('lerp can be curried', t => {
+  t.plan(2)
+
+  const lerpRange = lerp(0, 20)
+
+  t.equals(lerpRange(0.25), 5, 'lerp can be curried')
+  t.equals(lerp(1, 5, 0), 1, '0 is correctly interpreted as valid')
+})

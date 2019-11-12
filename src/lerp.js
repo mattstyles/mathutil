@@ -19,7 +19,7 @@ function _curryLerp (min, max) {
  * @param value <?Float> the interpolation value
  */
 export function lerp (min, max, value) {
-  if (!value) {
+  if (typeof value === 'undefined') {
     return _curryLerp(min, max)
   }
 
