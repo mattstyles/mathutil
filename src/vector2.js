@@ -161,6 +161,14 @@ export class Vector2 {
     return this
   }
 
+  static of (x, y) {
+    if (x instanceof Vector2) {
+      return new Vector2(x.pos[0], x.pos[1])
+    }
+
+    return new Vector2(x, y)
+  }
+
   /* -----------------------------------------------------------*
    *
    *  Basic ops

@@ -20,12 +20,16 @@ function closeEqual (a, b) {
   return close(b[0], a[0]) && close(b[1], a[1])
 }
 
-test('Constructor should create a new instance', assert => {
-  assert.plan(1)
+test('Vector2::Constructor should create a new instance', assert => {
+  assert.plan(3)
 
-  const v = new Vector2(10, 10)
+  const v = new Vector2(10, 13)
+  const w = Vector2.of(12, 12)
+  const x = Vector2.of(v)
 
   assert.ok(v instanceof Vector2, 'Returns correct instance')
+  assert.ok(w instanceof Vector2, 'Returns an instance using Vector2::of')
+  assert.deepEqual(x.pos, [10, 13], 'Can construct from another Vector2 instance')
 })
 
 test('Vector2 should be able to output its internal structure as either an array or an object', assert => {
