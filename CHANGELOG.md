@@ -1,5 +1,5 @@
 
-##
+## 3.0.0
 
 * _break_ Ray::project returns position only
 * _break_ lerp operands have changed to enable currying of the function
