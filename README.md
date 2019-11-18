@@ -15,11 +15,11 @@
 Install with [npm](https://npmjs.com) or [yarn](https://yarnpkg.com)
 
 ```sh
-npm i -S raid raid-addons
+npm i -S mathutil
 ```
 
 ```sh
-yarn add raid raid-addons
+yarn add mathutil
 ```
 
 Collection of useful maths-related utilities. All are dead-code removal friendly so import what you like and be happy that your tree-shaking module can remove everything else. All utilities are <2kb.
