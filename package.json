@@ -3,8 +3,8 @@
   "version": "3.0.0",
   "description": "Various and random collection of maths utilities",
   "main": "lib/mathutil.js",
-  "module": "lib/mathutil.mjs",
-  "jsnext:main": "lib/mathutil.mjs",
+  "module": "lib/mathutil.esm.js",
+  "jsnext:main": "lib/mathutil.esm.js",
   "unpkg": "dist/mathutil.min.js",
   "jsdelivr": "dist/mathutil.min.js",
   "files": [

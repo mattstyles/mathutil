@@ -1,4 +1,8 @@
 
+## 3.0.1
+
+* _update_ change file extension for better interop with bundlers
+
 ## 3.0.0
 
 * _break_ Ray::project returns position only
