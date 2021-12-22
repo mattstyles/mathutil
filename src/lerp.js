@@ -1,10 +1,9 @@
-
-function _performLerp (value, min, max) {
+function _performLerp(value, min, max) {
   return min + value * (max - min)
 }
 
-function _curryLerp (min, max) {
-  return function lerp (value) {
+function _curryLerp(min, max) {
+  return function lerp(value) {
     return _performLerp(value, min, max)
   }
 }
@@ -18,7 +17,7 @@ function _curryLerp (min, max) {
  * @param max <Number> the maximum boundary
  * @param value <?Float> the interpolation value
  */
-export function lerp (min, max, value) {
+export function lerp(min, max, value) {
   if (typeof value === 'undefined') {
     return _curryLerp(min, max)
   }

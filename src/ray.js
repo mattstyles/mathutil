@@ -1,19 +1,18 @@
-
-import { Vector2 } from './vector2'
+import {Vector2} from './vector2'
 
 const castOpts = {
   initial: false,
   origin: [0, 0],
   magnitude: 0,
-  step: 1
+  step: 1,
 }
 
 export class Ray {
-  static of (v) {
+  static of(v) {
     return new Ray(v)
   }
 
-  constructor (v) {
+  constructor(v) {
     if (!(v instanceof Vector2)) {
       throw new Error('Ray should be instantiated with a direction vector')
     }
@@ -29,7 +28,7 @@ export class Ray {
    *   @param magnitude <Number> magnitude of the ray section being cast
    *   @param step <Number> amount to step per operation
    */
-  cast (opts) {
+  cast(opts) {
     opts = Object.assign({}, castOpts, opts)
 
     const u = new Vector2(...this.dir.pos)
@@ -43,7 +42,7 @@ export class Ray {
      * The origin, or initial value, is often undesired and so its output is
      * hidden behind the initial flag.
      */
-    return function * () {
+    return function* () {
       if (opts.initial) {
         yield opts.origin
       }
@@ -69,7 +68,7 @@ export class Ray {
    *   @param magnitude <Number> magnitude of the ray section being cast
    *   @param step <Number> amount to step per operation
    */
-  project (opts) {
+  project(opts) {
     opts = Object.assign({}, castOpts, opts)
 
     const u = new Vector2(...this.dir.pos)

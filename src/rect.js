@@ -1,9 +1,8 @@
-
-import { Vector2 } from './vector2'
-import { Point } from './point'
+import {Vector2} from './vector2'
+import {Point} from './point'
 
 export class Rect {
-  static of (x1, y1, x2, y2) {
+  static of(x1, y1, x2, y2) {
     if (x1 instanceof Rect) {
       return new Rect(x1.pos[0], x1.pos[1], x1.pos[2], x1.pos[3])
     }
@@ -15,7 +14,7 @@ export class Rect {
    * Calculates the area of the given rectangle
    * @returns <Float>
    */
-  static area (rect) {
+  static area(rect) {
     if (!rect || !(rect instanceof Rect)) {
       throw new Error('Specify rect to translate')
     }
@@ -29,7 +28,7 @@ export class Rect {
    * @param y <Float>
    * @returns <Rect>
    */
-  static translate (rect, x = 0, y = 0) {
+  static translate(rect, x = 0, y = 0) {
     if (!rect || !(rect instanceof Rect)) {
       throw new Error('Specify rect to translate')
     }
@@ -47,7 +46,7 @@ export class Rect {
    * @param s <Float> scalar
    * @returns <Rect>
    */
-  static scale (rect, s) {
+  static scale(rect, s) {
     if (!rect || !(rect instanceof Rect)) {
       throw new Error('Specify rect to translate')
     }
@@ -55,12 +54,12 @@ export class Rect {
     return new Rect(
       rect.pos[0],
       rect.pos[1],
-      rect.pos[0] + (rect.width * s),
-      rect.pos[1] + (rect.height * s)
+      rect.pos[0] + rect.width * s,
+      rect.pos[1] + rect.height * s
     )
   }
 
-  static constrict (rect, x, y) {
+  static constrict(rect, x, y) {
     if (!rect || !(rect instanceof Rect)) {
       throw new Error('Specify rect to translate')
     }
@@ -77,39 +76,39 @@ export class Rect {
    * Creates new Rect instance
    * @constructs
    */
-  constructor (x1, y1, x2, y2) {
+  constructor(x1, y1, x2, y2) {
     this.pos = [x1, y1, x2, y2]
   }
 
-  get width () {
+  get width() {
     return this.pos[2] - this.pos[0]
   }
 
-  get height () {
+  get height() {
     return this.pos[3] - this.pos[1]
   }
 
-  setWidth (w) {
+  setWidth(w) {
     this.pos[2] = this.pos[0] + w
     return this
   }
 
-  setHeight (h) {
+  setHeight(h) {
     this.pos[3] = this.pos[1] + h
     return this
   }
 
-  floor () {
+  floor() {
     this.pos = this.pos.map(Math.floor)
     return this
   }
 
-  ceil () {
+  ceil() {
     this.pos = this.pos.map(Math.ceil)
     return this
   }
 
-  round () {
+  round() {
     this.pos[0] = Math.floor(this.pos[0])
     this.pos[1] = Math.floor(this.pos[1])
     this.pos[2] = Math.ceil(this.pos[2])
@@ -117,7 +116,7 @@ export class Rect {
     return this
   }
 
-  equal (x1, y1, x2, y2) {
+  equal(x1, y1, x2, y2) {
     if (x1 instanceof Rect) {
       return this.equal(...x1.pos)
     }
@@ -130,7 +129,7 @@ export class Rect {
     )
   }
 
-  equals (x1, y1, x2, y2) {
+  equals(x1, y1, x2, y2) {
     return this.equal(x1, y1, x2, y2)
   }
 
@@ -138,7 +137,7 @@ export class Rect {
    * Calculates the area of the rectangle
    * @returns <Float>
    */
-  area () {
+  area() {
     return (this.pos[2] - this.pos[0]) * (this.pos[3] - this.pos[1])
   }
 
@@ -148,39 +147,39 @@ export class Rect {
    * @param y <Float>
    * @returns <this>
    */
-  translate (x = 0, y = 0) {
+  translate(x = 0, y = 0) {
     this.pos = [
       this.pos[0] + x,
       this.pos[1] + y,
       this.pos[2] + x,
-      this.pos[3] + y
+      this.pos[3] + y,
     ]
     return this
   }
 
-  scale (s) {
+  scale(s) {
     this.pos = [
       this.pos[0],
       this.pos[1],
-      this.pos[0] + (this.width * s),
-      this.pos[1] + (this.height * s)
+      this.pos[0] + this.width * s,
+      this.pos[1] + this.height * s,
     ]
 
     return this
   }
 
-  constrict (x, y) {
+  constrict(x, y) {
     this.pos = [
       this.pos[0] + x,
       this.pos[1] + y,
       this.pos[2] - x,
-      this.pos[3] - y
+      this.pos[3] - y,
     ]
     return this
   }
 
-  _containsRect (rect) {
-    const { pos } = this
+  _containsRect(rect) {
+    const {pos} = this
     return (
       rect.pos[0] >= pos[0] &&
       rect.pos[1] >= pos[1] &&
@@ -189,7 +188,7 @@ export class Rect {
     )
   }
 
-  contains (x, y) {
+  contains(x, y) {
     if (x instanceof Rect) {
       return this._containsRect(x)
     }
@@ -198,21 +197,16 @@ export class Rect {
       return this.contains(x.x, x.y)
     }
 
-    const { pos } = this
+    const {pos} = this
 
-    return (
-      x >= pos[0] &&
-      y >= pos[1] &&
-      x <= pos[2] &&
-      y <= pos[3]
-    )
+    return x >= pos[0] && y >= pos[1] && x <= pos[2] && y <= pos[3]
   }
 
   /**
    * Returns a vector referencing the bottom-left, top-right diagonal
    * @returns <Vector2>
    */
-  slope () {
+  slope() {
     return new Vector2(this.pos[2] - this.pos[0], this.pos[3] - this.pos[1])
   }
 }

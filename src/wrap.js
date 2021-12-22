@@ -1,5 +1,4 @@
-
-function _performWrap (value, min, max) {
+function _performWrap(value, min, max) {
   const range = max - min
   if (range <= 0) {
     return 0
@@ -11,8 +10,8 @@ function _performWrap (value, min, max) {
   return res + min
 }
 
-function _curryWrap (min, max) {
-  return function wrap (value) {
+function _curryWrap(min, max) {
+  return function wrap(value) {
     return _performWrap(value, min, max)
   }
 }
@@ -20,7 +19,7 @@ function _curryWrap (min, max) {
 /**
  * -Stolen-, borrowed from Phaser
  */
-export function wrap (min, max, value) {
+export function wrap(min, max, value) {
   if (typeof value === 'undefined') {
     return _curryWrap(min, max)
   }

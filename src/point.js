@@ -1,10 +1,9 @@
-
 export class Point {
-  constructor (x, y) {
+  constructor(x, y) {
     this.pos = [x, y]
   }
 
-  static of (x, y) {
+  static of(x, y) {
     if (x instanceof Point) {
       return new Point(x.x, x.y)
     }
@@ -12,33 +11,30 @@ export class Point {
     return new Point(x, y)
   }
 
-  static translate (from, to) {
-    return Point.of(
-      from.x + to.x,
-      from.y + to.y
-    )
+  static translate(from, to) {
+    return Point.of(from.x + to.x, from.y + to.y)
   }
 
-  get x () {
+  get x() {
     return this.pos[0]
   }
 
-  get y () {
+  get y() {
     return this.pos[1]
   }
 
-  position () {
+  position() {
     return this.pos
   }
 
-  toCartesian () {
+  toCartesian() {
     return {
       x: this.pos[0],
-      y: this.pos[1]
+      y: this.pos[1],
     }
   }
 
-  equal (x, y) {
+  equal(x, y) {
     if (x instanceof Point || typeof x === 'object') {
       return this.equal(x.x, x.y)
     }
@@ -46,11 +42,11 @@ export class Point {
     return this.pos[0] === x && this.pos[1] === y
   }
 
-  equals (x, y) {
+  equals(x, y) {
     return this.equal(x, y)
   }
 
-  translate (x, y) {
+  translate(x, y) {
     if (x instanceof Point || typeof x === 'object') {
       return this.translate(x.x, x.y)
     }
