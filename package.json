@@ -17,7 +17,7 @@
     "prepack": "npm run build",
     "watch": "rollup -c -w",
     "prebuild": "npm run clean",
-    "build": "rollup -c",
+    "build": "NODE_ENV=production rimraf lib && swc src -d lib",
     "size": "size-limit",
     "preexample": "npm run build",
     "example": "rollup -c examples/rollup.config.js -w"
