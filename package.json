@@ -1,6 +1,6 @@
 {
   "name": "mathutil",
-  "version": "4.0.0-beta.1",
+  "version": "4.0.0-beta.2",
   "description": "Various and random collection of maths utilities",
   "main": "lib/index.js",
   "module": "esm/index.js",
