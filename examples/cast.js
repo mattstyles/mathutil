@@ -29,7 +29,7 @@ const step = 10
 const initial = true
 
 const r2 = Ray.of(Vector2.fromAngle(Math.PI * 2.2))
-const r3 = Ray.of(Vector2.fromAngle(Math.PI * 0.23))
+const r3 = Ray.of(Vector2.fromAngle(Math.PI * 0.29))
 
 // Create the cast generator
 var cast = r1.cast({

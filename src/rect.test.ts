@@ -22,14 +22,14 @@ test('Rect clone', () => {
   expect(r1 === r2).toEqual(false)
 })
 
-test('Rect::area -- instance method', () => {
+test('Rect::area -- instance getter method', () => {
   const x = new Rect(0, 0, 1, 1)
   const y = new Rect(0, 1, 4, 4)
   const z = new Rect(-1, -1, 1, 1)
 
-  expect(x.area()).toEqual(1)
-  expect(y.area()).toEqual(12)
-  expect(z.area()).toEqual(4)
+  expect(x.area).toEqual(1)
+  expect(y.area).toEqual(12)
+  expect(z.area).toEqual(4)
 })
 
 test('Rect::area -- static method', () => {

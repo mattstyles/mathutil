@@ -7,8 +7,12 @@
   "jsnext:main": "esm/index.js",
   "unpkg": "dist/mathutil.min.js",
   "jsdelivr": "dist/mathutil.min.js",
+  "typings": "lib/index.d.ts",
   "exports": {
-    ".": "lib/index.js"
+    ".": {
+      "require": "./lib/index.js",
+      "default": "./esm/index.js"
+    }
   },
   "files": [
     "build",
@@ -25,7 +29,7 @@
     "types:watch": "tsc -w --build tsconfig.build.json",
     "size": "size-limit",
     "watch": "concurrently --kill-others \"pnpm run build:watch\" \"pnpm run types:watch\" \"pnpm run test:watch\"",
-    "example": "pnpm run build && speedrun examples/index.html"
+    "example": "pnpm run build && pnpm run build:esm && speedrun examples/index.html"
   },
   "husky": {
     "hooks": {

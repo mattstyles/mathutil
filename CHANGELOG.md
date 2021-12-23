@@ -4,6 +4,7 @@
 - _break_ remove Vector2::toCartesian. x and y already exist on a Vector2.
 - _break_ remove Vector2::position. Just use .pos.
 - _break_ Vector2::unit returns itself and is mutative. Previously it was non-mutative and returned a new instance.
+- _break_ ray casting and projecting always returns Vector2. Previously it returned the Position value of a Vector2.
 
 - _add_ Vector2.length getter (same as len(), returns vector magnitude)
 - _update_ modern build chain using swc

@@ -1,8 +1,22 @@
+import type {Position, InputPoint} from './inputScalar'
+
 import {Vector2} from './vector2'
-import {Point} from './point'
+import {massageInputPoint} from './inputScalar'
 
 export class Rect {
-  static of(x1, y1, x2, y2) {
+  pos: [...Position, ...Position]
+
+  /**
+   * Creates new Rect instance
+   * @constructs
+   */
+  constructor(x1: number, y1: number, x2: number, y2: number) {
+    this.pos = [x1, y1, x2, y2]
+  }
+
+  static of(x1: Rect): Rect
+  static of(x1: number, y1: number, x2: number, y2: number): Rect
+  static of(x1: number | Rect, y1?: number, x2?: number, y2?: number): Rect {
     if (x1 instanceof Rect) {
       return new Rect(x1.pos[0], x1.pos[1], x1.pos[2], x1.pos[3])
     }
@@ -14,7 +28,7 @@ export class Rect {
    * Calculates the area of the given rectangle
    * @returns <Float>
    */
-  static area(rect) {
+  static area(rect: Rect): number {
     if (!rect || !(rect instanceof Rect)) {
       throw new Error('Specify rect to translate')
     }
@@ -28,7 +42,7 @@ export class Rect {
    * @param y <Float>
    * @returns <Rect>
    */
-  static translate(rect, x = 0, y = 0) {
+  static translate(rect: Rect, x = 0, y = 0): Rect {
     if (!rect || !(rect instanceof Rect)) {
       throw new Error('Specify rect to translate')
     }
@@ -46,7 +60,7 @@ export class Rect {
    * @param s <Float> scalar
    * @returns <Rect>
    */
-  static scale(rect, s) {
+  static scale(rect: Rect, s: number): Rect {
     if (!rect || !(rect instanceof Rect)) {
       throw new Error('Specify rect to translate')
     }
@@ -59,9 +73,13 @@ export class Rect {
     )
   }
 
-  static constrict(rect, x, y) {
+  static constrict(rect: Rect, x: number, y?: number) {
     if (!rect || !(rect instanceof Rect)) {
       throw new Error('Specify rect to translate')
+    }
+
+    if (y == null) {
+      y = x
     }
 
     return new Rect(
@@ -72,39 +90,39 @@ export class Rect {
     )
   }
 
-  /**
-   * Creates new Rect instance
-   * @constructs
-   */
-  constructor(x1, y1, x2, y2) {
-    this.pos = [x1, y1, x2, y2]
-  }
-
-  get width() {
+  get width(): number {
     return this.pos[2] - this.pos[0]
   }
 
-  get height() {
+  get height(): number {
     return this.pos[3] - this.pos[1]
   }
 
-  setWidth(w) {
+  get area(): number {
+    return this.width * this.height
+  }
+
+  get origin(): Position {
+    return [this.pos[0], this.pos[1]]
+  }
+
+  setWidth(w: number): this {
     this.pos[2] = this.pos[0] + w
     return this
   }
 
-  setHeight(h) {
+  setHeight(h: number): this {
     this.pos[3] = this.pos[1] + h
     return this
   }
 
   floor() {
-    this.pos = this.pos.map(Math.floor)
+    this.pos = this.pos.map(Math.floor) as [...Position, ...Position]
     return this
   }
 
   ceil() {
-    this.pos = this.pos.map(Math.ceil)
+    this.pos = this.pos.map(Math.ceil) as [...Position, ...Position]
     return this
   }
 
@@ -116,7 +134,9 @@ export class Rect {
     return this
   }
 
-  equal(x1, y1, x2, y2) {
+  equal(x1: Rect): boolean
+  equal(x1: number, y1: number, x2: number, y2: number): boolean
+  equal(x1: Rect | number, y1?: number, x2?: number, y2?: number): boolean {
     if (x1 instanceof Rect) {
       return this.equal(...x1.pos)
     }
@@ -129,16 +149,14 @@ export class Rect {
     )
   }
 
-  equals(x1, y1, x2, y2) {
-    return this.equal(x1, y1, x2, y2)
-  }
+  equals(x1: Rect): boolean
+  equals(x1: number, y1: number, x2: number, y2: number): boolean
+  equals(x1: Rect | number, y1?: number, x2?: number, y2?: number): boolean {
+    if (x1 instanceof Rect) {
+      return this.equal(...x1.pos)
+    }
 
-  /**
-   * Calculates the area of the rectangle
-   * @returns <Float>
-   */
-  area() {
-    return (this.pos[2] - this.pos[0]) * (this.pos[3] - this.pos[1])
+    return this.equal(x1, y1, x2, y2)
   }
 
   /**
@@ -157,7 +175,7 @@ export class Rect {
     return this
   }
 
-  scale(s) {
+  scale(s: number) {
     this.pos = [
       this.pos[0],
       this.pos[1],
@@ -168,7 +186,10 @@ export class Rect {
     return this
   }
 
-  constrict(x, y) {
+  constrict(x: number, y?: number) {
+    if (y == null) {
+      y = x
+    }
     this.pos = [
       this.pos[0] + x,
       this.pos[1] + y,
@@ -178,7 +199,7 @@ export class Rect {
     return this
   }
 
-  _containsRect(rect) {
+  private _containsRect(rect: Rect): boolean {
     const {pos} = this
     return (
       rect.pos[0] >= pos[0] &&
@@ -188,13 +209,17 @@ export class Rect {
     )
   }
 
-  contains(x, y) {
+  contains(x: Rect): boolean
+  contains(x: InputPoint): boolean
+  contains(x: number, y: number): boolean
+  contains(x: Rect | InputPoint, y?: number): boolean {
     if (x instanceof Rect) {
       return this._containsRect(x)
     }
 
-    if (x instanceof Point || typeof x === 'object') {
-      return this.contains(x.x, x.y)
+    if (y == null) {
+      const [a, b] = massageInputPoint(x)
+      return this.contains(a, b)
     }
 
     const {pos} = this
@@ -206,7 +231,7 @@ export class Rect {
    * Returns a vector referencing the bottom-left, top-right diagonal
    * @returns <Vector2>
    */
-  slope() {
+  slope(): Vector2 {
     return new Vector2(this.pos[2] - this.pos[0], this.pos[3] - this.pos[1])
   }
 }

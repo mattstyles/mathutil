@@ -1,5 +1,4 @@
-
-import { Vector2, toRadians } from '../lib/mathutil.mjs'
+import {Vector2, toRadians} from '../lib/index.js'
 
 const CANVAS_SIZE = 600
 
@@ -16,7 +15,7 @@ ctx.scale(window.devicePixelRatio, window.devicePixelRatio)
 const PI2 = Math.PI * 2
 
 class Entity {
-  constructor (x, y) {
+  constructor(x, y) {
     this.pos = new Vector2(x, y)
     this.dir = new Vector2(0, 1)
 
@@ -25,26 +24,31 @@ class Entity {
     this.visionDistance = 80
   }
 
-  render () {
+  render() {
     // Calc vision segment
     const halfVisionAngle = toRadians(this.fov / 2)
-    const leftVector = Vector2
-      .fromAngle(this.dir.angle() - halfVisionAngle)
-    const rightVector = Vector2
-      .fromAngle(this.dir.angle() + halfVisionAngle)
+    const leftVector = Vector2.fromAngle(this.dir.angle() - halfVisionAngle)
+    const rightVector = Vector2.fromAngle(this.dir.angle() + halfVisionAngle)
     const facingVector = Vector2.multiply(this.dir, this.visionDistance)
 
     // Render vision segment
     ctx.beginPath()
     ctx.moveTo(this.pos.x, this.pos.y)
-    ctx.arc(this.pos.x, this.pos.y, this.visionDistance, leftVector.angle(), rightVector.angle(), false)
+    ctx.arc(
+      this.pos.x,
+      this.pos.y,
+      this.visionDistance,
+      leftVector.angle(),
+      rightVector.angle(),
+      false
+    )
     ctx.fillStyle = 'rgba( 0, 0, 0, .15 )'
     ctx.fill()
 
     // Render facing vector
     ctx.beginPath()
     ctx.moveTo(this.pos.x, this.pos.y)
-    ctx.lineTo(...Vector2.add(this.pos, facingVector).position())
+    ctx.lineTo(...Vector2.add(this.pos, facingVector).pos)
     ctx.stroke()
 
     // Render entity shape
@@ -57,32 +61,32 @@ class Entity {
     ctx.stroke()
   }
 
-  forward () {
+  forward() {
     this.pos.add(this.dir)
   }
 
-  backward () {
+  backward() {
     this.pos.sub(this.dir)
   }
 
-  left () {
+  left() {
     this.dir.rotate(toRadians(-10))
   }
 
-  right () {
+  right() {
     this.dir.rotate(toRadians(10))
   }
 }
 
 const pc = new Entity(100, 100)
 
-function render () {
+function render() {
   ctx.clearRect(0, 0, 600, 600)
   pc.render()
 }
 
 // Add keys
-document.addEventListener('keydown', event => {
+document.addEventListener('keydown', (event) => {
   // quick and dirty
   switch (event.keyCode) {
     // left
@@ -90,17 +94,17 @@ document.addEventListener('keydown', event => {
       pc.left()
       break
 
-      // up
+    // up
     case 39:
       pc.right()
       break
 
-      // up
+    // up
     case 38:
       pc.forward()
       break
 
-      // up
+    // up
     case 40:
       pc.backward()
       break

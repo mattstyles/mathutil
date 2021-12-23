@@ -32,11 +32,11 @@ export class Point {
     return this.pos[1]
   }
 
-  set x(value: number): void {
+  set x(value: number) {
     this.pos[0] = value
   }
 
-  set y(value: number): void {
+  set y(value: number) {
     this.pos[1] = value
   }
 
@@ -65,6 +65,6 @@ export class Point {
     }
 
     const p = massageInputPoint(x)
-    return this.translate(p.x, p.y)
+    return this.translate(p[0], p[1])
   }
 }

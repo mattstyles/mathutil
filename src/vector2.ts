@@ -1,25 +1,41 @@
-function massageScalar(param) {
-  if (typeof param === 'number') {
-    return [param, param]
-  }
+import type {InputVector, Position} from './inputScalar'
 
-  if (param instanceof Vector2) {
-    return param.pos
-  }
-
-  return param
-}
+import {massageVectorInput} from './inputScalar'
 
 export class Vector2 {
+  pos: Position
+
+  /**
+   * `x` and `y` refer to both direction and magnitude, they are stored in a
+   * point array for performance
+   * @constructs
+   * @param x <Number>
+   * @param y <Number>
+   */
+  constructor(x: number, y: number) {
+    this.pos = [x, y]
+    return this
+  }
+
+  static of(x: Vector2): Vector2
+  static of(x: number, y: number): Vector2
+  static of(x: Vector2 | number, y?: number) {
+    if (x instanceof Vector2) {
+      return new Vector2(x.pos[0], x.pos[1])
+    }
+
+    return new Vector2(x, y)
+  }
+
   /**
    * Adds two vectors and returns a new instance
    * @param v1 <Vector2||Array||Number>
    * @param v2 <Vector2||Array||Number>
    * @returns <Vector2>
    */
-  static add(v1, v2) {
-    const x = massageScalar(v1)
-    const y = massageScalar(v2)
+  static add(v1: InputVector, v2: InputVector) {
+    const x = massageVectorInput(v1)
+    const y = massageVectorInput(v2)
     return new Vector2(x[0] + y[0], x[1] + y[1])
   }
 
@@ -29,9 +45,9 @@ export class Vector2 {
    * @param v2 <Vector2||Array||Number>
    * @returns <Vector2>
    */
-  static sub(v1, v2) {
-    const x = massageScalar(v1)
-    const y = massageScalar(v2)
+  static sub(v1: InputVector, v2: InputVector) {
+    const x = massageVectorInput(v1)
+    const y = massageVectorInput(v2)
     return new Vector2(x[0] - y[0], x[1] - y[1])
   }
 
@@ -41,9 +57,9 @@ export class Vector2 {
    * @param v2 <Vector2||Array||Number>
    * @returns <Vector2>
    */
-  static multiply(v1, v2) {
-    const x = massageScalar(v1)
-    const y = massageScalar(v2)
+  static multiply(v1: InputVector, v2: InputVector) {
+    const x = massageVectorInput(v1)
+    const y = massageVectorInput(v2)
     return new Vector2(x[0] * y[0], x[1] * y[1])
   }
 
@@ -53,9 +69,9 @@ export class Vector2 {
    * @param v2 <Vector2||Array||Number>
    * @returns <Vector2>
    */
-  static divide(v1, v2) {
-    const x = massageScalar(v1)
-    const y = massageScalar(v2)
+  static divide(v1: InputVector, v2: InputVector) {
+    const x = massageVectorInput(v1)
+    const y = massageVectorInput(v2)
     return new Vector2(
       y[0] === 0 ? 0 : x[0] / y[0],
       y[1] === 0 ? 0 : x[1] / y[1]
@@ -68,9 +84,9 @@ export class Vector2 {
    * @param v2 <Vector2||Array||Number>
    * @returns <Float>
    */
-  static dot(v1, v2) {
-    const x = massageScalar(v1)
-    const y = massageScalar(v2)
+  static dot(v1: InputVector, v2: InputVector) {
+    const x = massageVectorInput(v1)
+    const y = massageVectorInput(v2)
     return x[0] * y[0] + x[1] * y[1]
   }
 
@@ -80,9 +96,9 @@ export class Vector2 {
    * @param v2 <Vector2||Array||Number>
    * @returns <Float>
    */
-  static cross(v1, v2) {
-    const x = massageScalar(v1)
-    const y = massageScalar(v2)
+  static cross(v1: InputVector, v2: InputVector) {
+    const x = massageVectorInput(v1)
+    const y = massageVectorInput(v2)
     return x[0] * y[0] - x[1] * y[1]
   }
 
@@ -91,8 +107,8 @@ export class Vector2 {
    * @param vec <Vector2||Array||Number>
    * @returns <Float>
    */
-  static len(vec) {
-    const x = massageScalar(vec)
+  static len(vec: InputVector) {
+    const x = massageVectorInput(vec)
     return Math.sqrt(Math.pow(x[0], 2) + Math.pow(x[1], 2))
   }
 
@@ -101,8 +117,8 @@ export class Vector2 {
    * @param vec <Vector2||Array||Number>
    * @returns <Vector2>
    */
-  static unit(vec) {
-    const x = massageScalar(vec)
+  static unit(vec: InputVector) {
+    const x = massageVectorInput(vec)
     const len = Vector2.len(x)
     return Vector2.divide(x, [len, len])
   }
@@ -112,8 +128,8 @@ export class Vector2 {
    * @param vec <Vector2||Array||Number>
    * @returns <Vector2>
    */
-  static normal(vec) {
-    const x = massageScalar(vec)
+  static normal(vec: InputVector) {
+    const x = massageVectorInput(vec)
     return new Vector2(-x[1], x[0])
   }
 
@@ -122,8 +138,8 @@ export class Vector2 {
    * @param vec <Vector2||Array||Number>
    * @returns <Vector2>
    */
-  static backfaceNormal(vec) {
-    const x = massageScalar(vec)
+  static backfaceNormal(vec: InputVector) {
+    const x = massageVectorInput(vec)
     return new Vector2(x[1], -x[0])
   }
 
@@ -132,7 +148,7 @@ export class Vector2 {
    * @param angle <Float> in radians
    * @returns <Vector2>
    */
-  static fromAngle(angle) {
+  static fromAngle(angle: number) {
     return new Vector2(1, 0).rotate(angle)
   }
 
@@ -142,30 +158,11 @@ export class Vector2 {
    * @param angle <Float> in radians
    * @returns <Vector2>
    */
-  static rotate(vec, angle) {
-    const v = new Vector2(...vec.pos)
+  static rotate(vec: InputVector, angle: number) {
+    const x = massageVectorInput(vec)
+    const v = new Vector2(...x)
     v.rotate(angle)
     return v
-  }
-
-  /**
-   * `x` and `y` refer to both direction and magnitude, they are stored in a
-   * point array for performance
-   * @constructs
-   * @param x <Number>
-   * @param y <Number>
-   */
-  constructor(x, y) {
-    this.pos = [x, y]
-    return this
-  }
-
-  static of(x, y) {
-    if (x instanceof Vector2) {
-      return new Vector2(x.pos[0], x.pos[1])
-    }
-
-    return new Vector2(x, y)
   }
 
   /* -----------------------------------------------------------*
@@ -203,8 +200,8 @@ export class Vector2 {
    * @param vec <Vector2||Array||Number>
    * @returns <this>
    */
-  add(vec) {
-    const p = massageScalar(vec)
+  add(vec: InputVector) {
+    const p = massageVectorInput(vec)
 
     this.pos = [this.pos[0] + p[0], this.pos[1] + p[1]]
 
@@ -216,8 +213,8 @@ export class Vector2 {
    * @param vec <Vector2||Array||Number>
    * @returns <this>
    */
-  sub(vec) {
-    const p = massageScalar(vec)
+  sub(vec: InputVector) {
+    const p = massageVectorInput(vec)
 
     this.pos = [this.pos[0] - p[0], this.pos[1] - p[1]]
 
@@ -229,8 +226,8 @@ export class Vector2 {
    * @param vec <Vector2||Array||Number>
    * @returns <this>
    */
-  multiply(vec) {
-    const p = massageScalar(vec)
+  multiply(vec: InputVector) {
+    const p = massageVectorInput(vec)
 
     this.pos = [this.pos[0] * p[0], this.pos[1] * p[1]]
 
@@ -242,8 +239,8 @@ export class Vector2 {
    * @param vec <Vector2||Array||Number>
    * @returns <this>
    */
-  divide(vec) {
-    const p = massageScalar(vec)
+  divide(vec: InputVector) {
+    const p = massageVectorInput(vec)
 
     this.pos = [
       p[0] === 0 ? 0 : this.pos[0] / p[0],
@@ -256,7 +253,7 @@ export class Vector2 {
   /**
    * Sets the vector to the specified length
    */
-  magnitude(len) {
+  magnitude(len: InputVector) {
     const vec = Vector2.multiply(this.unit(), len)
     this.pos = vec.pos
     return this
@@ -267,8 +264,8 @@ export class Vector2 {
    * @param vec <Vector2||Array||Number>
    * @returns <Float>
    */
-  dot(vec) {
-    const p = massageScalar(vec)
+  dot(vec: InputVector) {
+    const p = massageVectorInput(vec)
     return this.pos[0] * p[0] + this.pos[1] * p[1]
   }
 
@@ -277,8 +274,8 @@ export class Vector2 {
    * @param vec <Vector2||Array||Number>
    * @returns <Float>
    */
-  cross(vec) {
-    const p = massageScalar(vec)
+  cross(vec: InputVector) {
+    const p = massageVectorInput(vec)
     return this.pos[0] * p[0] - this.pos[1] * p[1]
   }
 
@@ -335,7 +332,7 @@ export class Vector2 {
    * @param angle <Float> in radians
    * @returns <Vector2>
    */
-  rotate(angle) {
+  rotate(angle: number) {
     const [x, y] = this.pos
     const sin = Math.sin(angle)
     const cos = Math.cos(angle)
@@ -348,7 +345,7 @@ export class Vector2 {
    * @param angle <Float> in radians
    * @returns <Vector2>
    */
-  turn(angle) {
+  turn(angle: number) {
     const len = this.len()
     const dir = new Vector2(1, 0).rotate(angle)
     this.pos = [dir.pos[0] * len, dir.pos[1] * len]
@@ -375,7 +372,7 @@ export class Vector2 {
    * @param value <Float>
    * @returns <Vector2>
    */
-  lerp(value) {
+  lerp(value: number) {
     return Vector2.multiply(this, value)
   }
 
@@ -384,7 +381,7 @@ export class Vector2 {
    * @param vec <Vector2||Point>
    * @returns <Float>
    */
-  distance(vec) {
+  distance(vec: InputVector) {
     return Vector2.sub(this, vec).len()
   }
 
@@ -393,7 +390,7 @@ export class Vector2 {
    * @param vec <Vector2>
    * @returns <Boolean>
    */
-  isHeading(vec) {
+  isHeading(vec: Vector2) {
     return Vector2.dot(this.unit(), vec.unit()) === 1
   }
 
@@ -404,7 +401,7 @@ export class Vector2 {
    * @param angle <Float> in radians
    * @returns <Boolean>
    */
-  isNearHeading(vec, angle) {
+  isNearHeading(vec: Vector2, angle: number) {
     return Vector2.dot(this.unit(), vec.unit()) > Math.cos(angle)
   }
 }

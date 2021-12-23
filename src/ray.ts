@@ -1,6 +1,13 @@
+import type {Position} from './inputScalar'
 import {Vector2} from './vector2'
 
-const castOpts = {
+type CastOptions = {
+  initial: boolean
+  origin: Position
+  magnitude: number
+  step: number
+}
+const castOpts: CastOptions = {
   initial: false,
   origin: [0, 0],
   magnitude: 0,
@@ -8,16 +15,18 @@ const castOpts = {
 }
 
 export class Ray {
-  static of(v) {
-    return new Ray(v)
-  }
+  dir: Vector2
 
-  constructor(v) {
+  constructor(v: Vector2) {
     if (!(v instanceof Vector2)) {
       throw new Error('Ray should be instantiated with a direction vector')
     }
 
     this.dir = v.unit()
+  }
+
+  static of(v: Vector2) {
+    return new Ray(v)
   }
 
   /**
@@ -28,8 +37,11 @@ export class Ray {
    *   @param magnitude <Number> magnitude of the ray section being cast
    *   @param step <Number> amount to step per operation
    */
-  cast(opts) {
-    opts = Object.assign({}, castOpts, opts)
+  cast(opts: CastOptions) {
+    opts = {
+      ...castOpts,
+      ...opts,
+    }
 
     const u = new Vector2(...this.dir.pos)
     let len = 0
@@ -44,7 +56,7 @@ export class Ray {
      */
     return function* () {
       if (opts.initial) {
-        yield opts.origin
+        yield Vector2.of(...opts.origin)
       }
 
       while (len < opts.magnitude) {
@@ -54,7 +66,7 @@ export class Ray {
         // @TODO add is mutative, although magnitude resets it it might
         // still be safer to return a new vector, although likely slower
         // yield u.add(opts.origin).pos
-        yield Vector2.add(opts.origin, u).pos
+        yield Vector2.add(opts.origin, u)
       }
     }
   }
@@ -68,17 +80,20 @@ export class Ray {
    *   @param magnitude <Number> magnitude of the ray section being cast
    *   @param step <Number> amount to step per operation
    */
-  project(opts) {
-    opts = Object.assign({}, castOpts, opts)
+  project(opts: CastOptions) {
+    opts = {
+      ...castOpts,
+      ...opts,
+    }
 
     const u = new Vector2(...this.dir.pos)
     let len = 0
 
-    return (cb) => {
+    return (cb: (v: Vector2) => void) => {
       while (len < opts.magnitude) {
         len = len + opts.step
         u.magnitude(len)
-        cb(Vector2.add(opts.origin, u).pos)
+        cb(Vector2.add(opts.origin, u))
       }
     }
   }

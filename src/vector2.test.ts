@@ -1,9 +1,10 @@
+import type {InputVector, Position} from './inputScalar'
 import {Vector2} from './vector2'
 
 /**
  * Checks if vectors are equal (using close enough checking for rounding inconsistencies)
  */
-function checkClose(x, y) {
+function checkClose(x: Vector2, y: Vector2) {
   expect(x.x).toBeCloseTo(y.x)
   expect(x.y).toBeCloseTo(y.y)
 }
@@ -27,7 +28,7 @@ test('Vector2 should be able to output its internal structure as either an array
 })
 
 test('Vector2::add', () => {
-  const tests = [
+  const tests: {source: Vector2; add: InputVector; expected: Position}[] = [
     // Vector2 form
     {
       source: new Vector2(2, 1),
@@ -65,7 +66,7 @@ test('Vector2::add', () => {
 })
 
 test('Vector2::sub', () => {
-  const tests = [
+  const tests: {source: Vector2; sub: InputVector; expected: Position}[] = [
     // Vector2 form
     {
       source: new Vector2(3, 2),
@@ -100,7 +101,7 @@ test('Vector2::sub', () => {
 })
 
 test('Vector2::multiply', () => {
-  const tests = [
+  const tests: {source: Vector2; apply: InputVector; expected: Position}[] = [
     // Vector2 form
     {
       source: new Vector2(3, 2),
@@ -135,7 +136,7 @@ test('Vector2::multiply', () => {
 })
 
 test('Vector2::divide', () => {
-  const tests = [
+  const tests: {source: Vector2; divide: InputVector; expected: Position}[] = [
     // Vector2 form
     {
       source: new Vector2(4, 2),
