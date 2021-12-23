@@ -10,10 +10,12 @@ function _curryClamp(min: number, max: number): CurriedReturn {
 
 type CurriedReturn = (value: number) => number
 
+export function clamp(min: number, max: number): CurriedReturn
+export function clamp(min: number, max: number, value: number): number
 export function clamp(
   min: number,
   max: number,
-  value: number
+  value?: number
 ): CurriedReturn | number {
   if (typeof value === 'undefined') {
     return _curryClamp(min, max)

@@ -175,15 +175,6 @@ export class Vector2 {
    *----------------------------------------------------------- */
 
   /**
-   * Outputs an array describing the position [ x, y ]
-   * Useful for spreading to parameters
-   * @returns <Array>
-   */
-  position() {
-    return this.pos
-  }
-
-  /**
    * Getter for the x component of position
    * @returns <Float>
    */
@@ -200,14 +191,11 @@ export class Vector2 {
   }
 
   /**
-   * Outputs an object with x and y properties
-   * @returns <Object>
+   * Getter for the length component of position i.e. the magnitude
+   * @returns <Float>
    */
-  toCartesian() {
-    return {
-      x: this.pos[0],
-      y: this.pos[1],
-    }
+  get length() {
+    return this.len()
   }
 
   /**
@@ -316,7 +304,7 @@ export class Vector2 {
    */
   unit() {
     const len = this.len()
-    return Vector2.divide(this.pos, [len, len])
+    return Vector2.divide(this, len)
   }
 
   /* -----------------------------------------------------------*

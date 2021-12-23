@@ -1,6 +1,9 @@
 node_modules
 lib
+esm
+build
 dist
 *.log
 examples/bundle.js*
 TODO.md
+.cache

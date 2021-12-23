@@ -1,5 +1,4 @@
-
-var { Ray, Vector2 } = require('../lib/mathutil.mjs')
+var {Ray, Vector2} = require('../lib/index.js')
 
 const PI2 = Math.PI * 2
 const CANVAS_SIZE = 600
@@ -34,13 +33,22 @@ const r3 = Ray.of(Vector2.fromAngle(Math.PI * 0.23))
 
 // Create the cast generator
 var cast = r1.cast({
-  origin, magnitude, step, initial
+  origin,
+  magnitude,
+  step,
+  initial,
 })
 var gen = r2.cast({
-  origin, magnitude, step, initial
+  origin,
+  magnitude,
+  step,
+  initial,
 })()
 var yeo = r3.cast({
-  origin, magnitude, step, initial
+  origin,
+  magnitude,
+  step,
+  initial,
 })()
 window.yeo = yeo
 
@@ -61,7 +69,7 @@ while (!p.done) {
   p = gen.next()
 }
 
-const onYeo = gen => {
+const onYeo = (gen) => {
   const p = gen.next()
   if (!p.done) {
     console.log(' ~~~ ', p.value)

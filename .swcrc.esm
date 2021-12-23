@@ -65,7 +65,7 @@
     "externalHelpers": false
   },
   "module": {
-    "type": "commonjs"
+    "type": "es6"
   },
   "exclude": [".*.test.ts"],
   "sourceMaps": true,

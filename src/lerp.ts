@@ -1,8 +1,10 @@
-function _performLerp(value, min, max) {
+function _performLerp(value: number, min: number, max: number): number {
   return min + value * (max - min)
 }
 
-function _curryLerp(min, max) {
+type CurriedReturn = (value: number) => number
+
+function _curryLerp(min: number, max: number): CurriedReturn {
   return function lerp(value) {
     return _performLerp(value, min, max)
   }
@@ -17,7 +19,13 @@ function _curryLerp(min, max) {
  * @param max <Number> the maximum boundary
  * @param value <?Float> the interpolation value
  */
-export function lerp(min, max, value) {
+export function lerp(min: number, max: number): CurriedReturn
+export function lerp(min: number, max: number, value: number): number
+export function lerp(
+  min: number,
+  max: number,
+  value: number
+): CurriedReturn | number {
   if (typeof value === 'undefined') {
     return _curryLerp(min, max)
   }

@@ -1,5 +1,6 @@
-
-var { Vector2 } = require('../lib/mathutil.mjs')
+// var {Vector2} = require('../esm/index.js')
+// var {Vector2} = require('../esm/vector2.js')
+import {Vector2} from '../esm/vector2'
 
 const PI90 = Math.PI * 0.5
 
@@ -24,25 +25,25 @@ ctx.scale(window.devicePixelRatio, window.devicePixelRatio)
 // }
 
 class Dragon {
-  constructor (x, y) {
+  constructor(x, y) {
     this.pos = new Vector2(x, y)
     this.dir = new Vector2(0, 1)
     this.speed = 1.5
   }
 
-  traceForward () {
+  traceForward() {
     const forward = Vector2.multiply(this.dir, this.speed)
     ctx.beginPath()
     ctx.moveTo(this.pos.x, this.pos.y)
-    ctx.lineTo(...this.pos.add(forward).position())
+    ctx.lineTo(...this.pos.add(forward).pos)
     ctx.stroke()
   }
 
-  rotate (value) {
+  rotate(value) {
     this.dir.rotate(PI90 * value)
   }
 
-  traceRotate (value) {
+  traceRotate(value) {
     this.rotate(value)
     this.traceForward()
   }
@@ -75,12 +76,12 @@ const elderDragon = new Dragon(600, 300)
 // }
 // drawDragonCurve(1)
 
-const isOdd = value => {
+const isOdd = (value) => {
   const h = value * 0.5
-  return h !== (value * 0.5 | 0)
+  return h !== ((value * 0.5) | 0)
 }
 
-const findPower = value => {
+const findPower = (value) => {
   let i = -1
   while (++i < 20) {
     const test = value / Math.pow(2, i)
@@ -93,7 +94,7 @@ const findPower = value => {
   throw new Error(err)
 }
 
-const findTurn = i => {
+const findTurn = (i) => {
   const out = findPower(i) % 4
   if (out !== 1 && out !== 3) {
     const err = `Turn not recognised: ${out}`
