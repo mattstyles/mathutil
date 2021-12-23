@@ -12,11 +12,16 @@
     ".": {
       "require": "./lib/index.js",
       "default": "./esm/index.js"
+    },
+    "./*": {
+      "require": "./lib/*.js",
+      "default": "./esm/*.js"
     }
   },
   "files": [
     "build",
-    "lib"
+    "lib",
+    "esm"
   ],
   "scripts": {
     "test": "jest",
