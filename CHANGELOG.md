@@ -1,3 +1,8 @@
+## 4.1.0
+
+- _add_ Rect getters for edge coordinates
+- _add_ Point::scale
+
 ## 4.0.0
 
 - _break_ remove Point::toCartesian. x and y already exist on a Point.

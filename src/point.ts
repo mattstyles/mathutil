@@ -67,4 +67,10 @@ export class Point {
     const p = massageInputPoint(x)
     return this.translate(p[0], p[1])
   }
+
+  scale(s: number): this {
+    this.x *= s
+    this.y *= s
+    return this
+  }
 }
