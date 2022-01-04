@@ -106,6 +106,30 @@ export class Rect {
     return [this.pos[0], this.pos[1]]
   }
 
+  get x(): number {
+    return this.pos[0]
+  }
+
+  get y(): number {
+    return this.pos[1]
+  }
+
+  get x1(): number {
+    return this.pos[0]
+  }
+
+  get y1(): number {
+    return this.pos[1]
+  }
+
+  get x2(): number {
+    return this.pos[2]
+  }
+
+  get y2(): number {
+    return this.pos[3]
+  }
+
   setWidth(w: number): this {
     this.pos[2] = this.pos[0] + w
     return this
