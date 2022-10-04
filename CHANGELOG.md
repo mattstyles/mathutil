@@ -1,3 +1,7 @@
+## 4.1.1
+
+- _fix_ Vector2::cross product calculation.
+
 ## 4.1.0
 
 - _add_ Rect getters for edge coordinates
