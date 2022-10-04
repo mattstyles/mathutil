@@ -246,22 +246,22 @@ test('Vector2::cross', () => {
     {
       source: new Vector2(0, 1),
       target: new Vector2(0, 1),
-      expected: -1, // Same direction
+      expected: 0, // Same direction
     },
     {
       source: new Vector2(0, 1),
       target: new Vector2(1, 0),
-      expected: 0, // Perpendicular
+      expected: -1, // Perpendicular
     },
     {
       source: new Vector2(0, 1),
       target: new Vector2(-1, 0),
-      expected: -0, // Perpendicular
+      expected: 1, // Perpendicular
     },
     {
       source: new Vector2(0, 1),
       target: new Vector2(0, -1),
-      expected: 1, // Opposite directions
+      expected: -0, // Opposite directions
     },
   ]
 

@@ -99,7 +99,7 @@ export class Vector2 {
   static cross(v1: InputVector, v2: InputVector) {
     const x = massageVectorInput(v1)
     const y = massageVectorInput(v2)
-    return x[0] * y[0] - x[1] * y[1]
+    return x[0] * y[1] - x[1] * y[0]
   }
 
   /**
@@ -276,7 +276,7 @@ export class Vector2 {
    */
   cross(vec: InputVector) {
     const p = massageVectorInput(vec)
-    return this.pos[0] * p[0] - this.pos[1] * p[1]
+    return this.pos[0] * p[1] - this.pos[1] * p[0]
   }
 
   /**
