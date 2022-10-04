@@ -1,3 +1,7 @@
+## 4.1.3
+
+- _fix_ build and publish types
+
 ## 4.1.1
 
 - _fix_ Vector2::cross product calculation.
