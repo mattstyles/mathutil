@@ -1,6 +1,6 @@
 {
   "name": "mathutil",
-  "version": "4.1.3",
+  "version": "4.1.3-rc.1",
   "description": "Various and random collection of maths utilities",
   "type": "module",
   "main": "dist/index.cjs",
