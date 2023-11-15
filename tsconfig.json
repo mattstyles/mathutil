@@ -8,5 +8,13 @@
     "emitDeclarationOnly": true,
     "resolveJsonModule": true
   },
-  "exclude": ["node_modules", "**/*/lib", "**/*/dist", "**/*.spec.ts", "**/*.test.ts", "examples/**", "vite.config.ts"]
+  "exclude": [
+    "node_modules",
+    "**/*/lib",
+    "**/*/dist",
+    "**/*.spec.ts",
+    "**/*.test.ts",
+    "examples/**",
+    "vite.config.ts"
+  ]
 }
