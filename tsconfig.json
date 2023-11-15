@@ -6,7 +6,7 @@
     "declaration": true,
     "downlevelIteration": true,
     "emitDeclarationOnly": true,
-    "outDir": "./lib"
+    "resolveJsonModule": true
   },
-  "exclude": ["node_modules", "**/*/lib", "**/*/dist"]
+  "exclude": ["node_modules", "**/*/lib", "**/*/dist", "**/*.spec.ts", "**/*.test.ts", "examples/**", "vite.config.ts"]
 }
