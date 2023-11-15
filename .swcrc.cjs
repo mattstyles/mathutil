@@ -67,7 +67,7 @@
   "module": {
     "type": "commonjs"
   },
-  
+  "exclude": [".*.test.ts"],
   "sourceMaps": true,
   "minify": true
 }
