@@ -1,6 +1,7 @@
 ##
 
-- _add_ :house: eslint and prettier
+- _add_ :house: update tooling
+- _update_ :house: refine output paths
 
 ## 4.2.0
 
