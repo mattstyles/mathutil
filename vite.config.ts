@@ -6,7 +6,7 @@ export default defineConfig({
     outDir: 'dist',
     sourcemap: true,
     lib: {
-      entry: './src/index.ts',
+      entry: ['./src/index.ts', './src/icanhaznumber.ts', './src/random.ts'],
       formats: ['cjs', 'es'],
       fileName: '[name]',
     },

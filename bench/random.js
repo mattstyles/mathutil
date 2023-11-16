@@ -2,17 +2,25 @@
 
 import crypto from 'node:crypto'
 import {Bench} from 'tinybench'
+import {doom, createDoomRng} from '../dist/random.js'
+import {random, table} from '../dist/icanhaznumber.js'
 
 const bench = new Bench({time: 100})
 
 function sink() {}
 
 let idx = 0
-let table = [255, 167, 77, 74, 134, 23, 200, 211, 25]
+let some_table = [255, 167, 77, 74, 134, 23, 200, 211, 25]
 function getRnd() {
-  idx = idx >= table.length ? 0 : idx + 1
-  return table[idx]
+  // This is maintained because it shows that bit shifting for wrapping (@see doom function) is faster
+  idx = idx >= some_table.length ? 0 : idx + 1
+  return some_table[idx]
 }
+const rnd = doom()
+const rnd2 = createDoomRng(0, {
+  table: table,
+  range: [0, 255],
+})
 
 bench
   .add('Math.random', () => {
@@ -24,7 +32,16 @@ bench
   .add('crypto :: from uuid', () => {
     sink(parseInt(crypto.randomUUID().slice(-2), 16))
   })
+  .add('doom rnd table', () => {
+    sink(rnd())
+  })
+  .add('createDoom rng', () => {
+    sink(rnd2())
+  })
+  .add('icanhaznumber', () => {
+    sink(random())
+  })
 
 await bench.run()
 
-console.log(bench.table())
+console.table(bench.table())

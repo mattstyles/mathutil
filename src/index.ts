@@ -18,3 +18,5 @@ export {wrap} from './wrap.ts'
 
 export {euclidean} from './euclidean.ts'
 export {manhattan} from './manhattan.ts'
+
+export {doom} from './random.ts'
