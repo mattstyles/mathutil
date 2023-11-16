@@ -4,7 +4,7 @@ import {Point} from './point'
 import {manhattan} from './manhattan'
 
 it('Should calculate the manhattan distance between 2 points', () => {
-  for (let {a, b, expected} of tests) {
+  for (const {a, b, expected} of tests) {
     expect(manhattan(a, b)).toEqual(expected)
   }
 })

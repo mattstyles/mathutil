@@ -1,14 +1,14 @@
 import {wrap} from './wrap'
 
 test('Wrap should wrap values around the specified range when they overflow', () => {
-  for (let {min, max, value, expected} of tests) {
+  for (const {min, max, value, expected} of tests) {
     expect(wrap(min, max, value)).toBeCloseTo(expected)
   }
 })
 
 test('Wrap has a curried form which can be used', () => {
-  for (let {min, max, value, expected} of tests) {
-    let fn = wrap(min, max)
+  for (const {min, max, value, expected} of tests) {
+    const fn = wrap(min, max)
     expect(fn(value)).toBeCloseTo(expected)
   }
 })

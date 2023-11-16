@@ -1,13 +1,13 @@
 import {clamp} from './clamp'
 
 it('Should clamp the value to a defined range', () => {
-  for (let {min, max, value, expected} of tests) {
+  for (const {min, max, value, expected} of tests) {
     expect(clamp(min, max, value)).toBeCloseTo(expected)
   }
 })
 
 it('Should return a function that can be used with the defined range to clamp a value', () => {
-  for (let {min, max, value, expected} of tests) {
+  for (const {min, max, value, expected} of tests) {
     const fn = clamp(min, max)
     expect(fn(value)).toBeCloseTo(expected)
   }

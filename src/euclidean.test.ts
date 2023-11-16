@@ -4,7 +4,7 @@ import {Point} from './point'
 import {euclidean} from './euclidean'
 
 it('Should calculate the euclidean distance between 2 points', () => {
-  for (let {a, b, expected} of tests) {
+  for (const {a, b, expected} of tests) {
     expect(euclidean(a, b)).toBeCloseTo(expected)
   }
 })

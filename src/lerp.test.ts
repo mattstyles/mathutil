@@ -1,7 +1,7 @@
 import {lerp} from './lerp'
 
 test('lerp interpolates between positive values', () => {
-  for (let {min, max, value, expected} of tests) {
+  for (const {min, max, value, expected} of tests) {
     expect(lerp(min, max, value)).toBeCloseTo(expected)
 
     // Curried form

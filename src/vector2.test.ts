@@ -49,7 +49,7 @@ test('Vector2::add', () => {
     },
   ]
 
-  for (let {source, add, expected} of tests) {
+  for (const {source, add, expected} of tests) {
     // Static method
     expect(Vector2.add(source, add).pos).toEqual(expected)
 
@@ -87,7 +87,7 @@ test('Vector2::sub', () => {
     },
   ]
 
-  for (let {source, sub, expected} of tests) {
+  for (const {source, sub, expected} of tests) {
     // Static method
     expect(Vector2.sub(source, sub).pos).toEqual(expected)
 
@@ -122,7 +122,7 @@ test('Vector2::multiply', () => {
     },
   ]
 
-  for (let {source, apply, expected} of tests) {
+  for (const {source, apply, expected} of tests) {
     // Static method
     expect(Vector2.multiply(source, apply).pos).toEqual(expected)
 
@@ -163,7 +163,7 @@ test('Vector2::divide', () => {
     },
   ]
 
-  for (let {source, divide, expected} of tests) {
+  for (const {source, divide, expected} of tests) {
     // Static method
     expect(Vector2.divide(source, divide).pos).toEqual(expected)
 
@@ -189,7 +189,7 @@ test('Vector2::len', () => {
     {v: Vector2.of(3, 4), e: 5},
   ]
 
-  for (let {v, e} of tests) {
+  for (const {v, e} of tests) {
     expect(v.len()).toBeCloseTo(e)
     expect(v.length).toBeCloseTo(e)
     expect(Vector2.len(v)).toBeCloseTo(e)
@@ -220,7 +220,7 @@ test('Vector2::dot', () => {
     },
   ]
 
-  for (let {source, target, expected} of tests) {
+  for (const {source, target, expected} of tests) {
     // Static method
     expect(Vector2.dot(source, target)).toEqual(expected)
 
@@ -265,7 +265,7 @@ test('Vector2::cross', () => {
     },
   ]
 
-  for (let {source, target, expected} of tests) {
+  for (const {source, target, expected} of tests) {
     // Static method
     expect(Vector2.cross(source, target)).toEqual(expected)
 
@@ -302,7 +302,7 @@ test('Vector2::unit', () => {
     },
   ]
 
-  for (let {source, expected} of tests) {
+  for (const {source, expected} of tests) {
     // Static method
     const x = Vector2.unit(source)
     expect(x.x).toBeCloseTo(expected.x)
@@ -321,7 +321,7 @@ test('Vector2::normal', () => {
     {source: new Vector2(1, 0), expected: new Vector2(0, 1)},
   ]
 
-  for (let {source, expected} of tests) {
+  for (const {source, expected} of tests) {
     // Static
     const x = Vector2.normal(source)
     expect(x.x).toBeCloseTo(expected.x)
@@ -340,7 +340,7 @@ test('Vector2::backfaceNormal', () => {
     {source: new Vector2(1, 0), expected: new Vector2(0, -1)},
   ]
 
-  for (let {source, expected} of tests) {
+  for (const {source, expected} of tests) {
     // Static
     const x = Vector2.backfaceNormal(source)
     expect(x.x).toBeCloseTo(expected.x)

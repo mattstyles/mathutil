@@ -1,7 +1,7 @@
 import {max} from './max'
 
 test('Min finds the minimum number in a set or array', () => {
-  for (let {set, expected} of tests) {
+  for (const {set, expected} of tests) {
     expect(max(set)).toEqual(expected)
     expect(max(new Set(set))).toEqual(expected)
   }
