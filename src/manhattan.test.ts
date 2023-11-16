@@ -1,7 +1,7 @@
-import {InputPoint} from './inputScalar'
+import {InputPoint} from './inputScalar.ts'
 
-import {Point} from './point'
-import {manhattan} from './manhattan'
+import {Point} from './point.ts'
+import {manhattan} from './manhattan.ts'
 
 it('Should calculate the manhattan distance between 2 points', () => {
   for (const {a, b, expected} of tests) {

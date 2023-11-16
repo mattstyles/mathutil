@@ -1,7 +1,7 @@
-import type {InputPoint} from './inputScalar'
+import type {InputPoint} from './inputScalar.ts'
 
-import {Point} from './point'
-import {euclidean} from './euclidean'
+import {Point} from './point.ts'
+import {euclidean} from './euclidean.ts'
 
 it('Should calculate the euclidean distance between 2 points', () => {
   for (const {a, b, expected} of tests) {

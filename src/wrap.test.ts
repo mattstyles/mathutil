@@ -1,4 +1,4 @@
-import {wrap} from './wrap'
+import {wrap} from './wrap.ts'
 
 test('Wrap should wrap values around the specified range when they overflow', () => {
   for (const {min, max, value, expected} of tests) {

@@ -1,4 +1,4 @@
-import {Point} from './point'
+import {Point} from './point.ts'
 
 test('Point::Constructor', () => {
   const p1 = new Point(1, 2)

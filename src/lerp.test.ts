@@ -1,4 +1,4 @@
-import {lerp} from './lerp'
+import {lerp} from './lerp.ts'
 
 test('lerp interpolates between positive values', () => {
   for (const {min, max, value, expected} of tests) {

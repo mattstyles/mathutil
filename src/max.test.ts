@@ -1,4 +1,4 @@
-import {max} from './max'
+import {max} from './max.ts'
 
 test('Min finds the minimum number in a set or array', () => {
   for (const {set, expected} of tests) {

@@ -1,6 +1,6 @@
-import {Rect} from './rect'
-import {Point} from './point'
-import {Vector2} from './vector2'
+import {Rect} from './rect.ts'
+import {Point} from './point.ts'
+import {Vector2} from './vector2.ts'
 
 test('Constructor should create a new instance', () => {
   const x = new Rect(0, 0, 1, 1)

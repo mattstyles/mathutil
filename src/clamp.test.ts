@@ -1,4 +1,4 @@
-import {clamp} from './clamp'
+import {clamp} from './clamp.ts'
 
 it('Should clamp the value to a defined range', () => {
   for (const {min, max, value, expected} of tests) {

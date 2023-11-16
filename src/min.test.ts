@@ -1,4 +1,4 @@
-import {min} from './min'
+import {min} from './min.ts'
 
 test('Min finds the minimum number in a set or array', () => {
   for (const {set, expected} of tests) {
