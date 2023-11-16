@@ -24,7 +24,7 @@ export function lerp(min: number, max: number, value: number): number
 export function lerp(
   min: number,
   max: number,
-  value?: number
+  value?: number,
 ): CurriedReturn | number {
   if (typeof value === 'undefined') {
     return _curryLerp(min, max)

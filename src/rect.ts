@@ -51,7 +51,7 @@ export class Rect {
       rect.pos[0] + x,
       rect.pos[1] + y,
       rect.pos[2] + x,
-      rect.pos[3] + y
+      rect.pos[3] + y,
     )
   }
 
@@ -69,7 +69,7 @@ export class Rect {
       rect.pos[0],
       rect.pos[1],
       rect.pos[0] + rect.width * s,
-      rect.pos[1] + rect.height * s
+      rect.pos[1] + rect.height * s,
     )
   }
 
@@ -86,7 +86,7 @@ export class Rect {
       rect.pos[0] + x,
       rect.pos[1] + y,
       rect.pos[2] - x,
-      rect.pos[3] - y
+      rect.pos[3] - y,
     )
   }
 

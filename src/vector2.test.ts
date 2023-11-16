@@ -226,7 +226,7 @@ test('Vector2::dot', () => {
 
     // Static with point arrays
     expect(Vector2.dot([source.x, source.y], [target.x, target.y])).toEqual(
-      expected
+      expected,
     )
 
     // Instance method - doing this after the static method ensures that
@@ -271,7 +271,7 @@ test('Vector2::cross', () => {
 
     // Static with point arrays
     expect(Vector2.cross([source.x, source.y], [target.x, target.y])).toEqual(
-      expected
+      expected,
     )
 
     // Instance method - doing this after the static method ensures that

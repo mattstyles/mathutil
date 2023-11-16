@@ -25,6 +25,7 @@
     "dist"
   ],
   "scripts": {
+    "lint": "eslint ./src",
     "test": "jest",
     "test:watch": "jest --watch",
     "build:vite": "vite build",
@@ -40,7 +41,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "npm run test && npm run size"
+      "pre-push": "npm run lint && npm run test && npm run size"
     }
   },
   "size-limit": [
@@ -73,9 +74,13 @@
     "@swc/core": "^1.2.121",
     "@swc/jest": "^0.2.15",
     "@types/jest": "^27.0.3",
+    "@typescript-eslint/eslint-plugin": "^6.11.0",
+    "@typescript-eslint/parser": "^6.11.0",
     "chokidar": "^3.5.2",
     "concurrently": "^6.5.1",
+    "eslint": "^8.53.0",
     "jest": "^27.4.5",
+    "prettier": "^3.1.0",
     "rimraf": "^3.0.2",
     "rollup-plugin-preserve-directives": "^0.2.0",
     "speedrun": "^1.0.2",

@@ -74,7 +74,7 @@ export class Vector2 {
     const y = massageVectorInput(v2)
     return new Vector2(
       y[0] === 0 ? 0 : x[0] / y[0],
-      y[1] === 0 ? 0 : x[1] / y[1]
+      y[1] === 0 ? 0 : x[1] / y[1],
     )
   }
 

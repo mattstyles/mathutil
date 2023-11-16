@@ -1,3 +1,11 @@
+##
+
+- _add_ :house: eslint and prettier
+
+## 4.2.0
+
+- _fix_ esm publish types
+
 ## 4.1.3
 
 - _fix_ build and publish types

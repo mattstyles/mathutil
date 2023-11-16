@@ -15,7 +15,7 @@ export function clamp(min: number, max: number, value: number): number
 export function clamp(
   min: number,
   max: number,
-  value?: number
+  value?: number,
 ): CurriedReturn | number {
   if (typeof value === 'undefined') {
     return _curryClamp(min, max)
