@@ -37,7 +37,8 @@
     "types:watch": "tsc -w --build tsconfig.build.json",
     "size": "size-limit",
     "watch": "concurrently --kill-others \"pnpm run build:watch\" \"pnpm run types:watch\" \"pnpm run test:watch\"",
-    "example": "pnpm run build && pnpm run build:esm && speedrun examples/index.html"
+    "example": "pnpm run build && pnpm run build:esm && speedrun examples/index.html",
+    "prepare": "husky install"
   },
   "husky": {
     "hooks": {
@@ -86,6 +87,7 @@
     "speedrun": "^1.0.2",
     "typescript": "^4.5.4",
     "vite": "^4.5.0",
-    "vite-plugin-dts": "^3.6.3"
+    "vite-plugin-dts": "^3.6.3",
+    "husky": "^8.0.0"
   }
 }
