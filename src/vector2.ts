@@ -1,6 +1,6 @@
-import type {InputVector, Position} from './inputScalar'
+import type {InputVector, Position} from './inputScalar.ts'
 
-import {massageVectorInput} from './inputScalar'
+import {massageVectorInput} from './inputScalar.ts'
 
 export class Vector2 {
   pos: Position

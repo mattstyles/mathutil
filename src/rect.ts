@@ -1,7 +1,7 @@
-import type {Position, InputPoint} from './inputScalar'
+import type {Position, InputPoint} from './inputScalar.ts'
 
-import {Vector2} from './vector2'
-import {massageInputPoint} from './inputScalar'
+import {Vector2} from './vector2.ts'
+import {massageInputPoint} from './inputScalar.ts'
 
 export class Rect {
   pos: [...Position, ...Position]
@@ -246,9 +246,13 @@ export class Rect {
       return this.contains(a, b)
     }
 
-    const {pos} = this
-
-    return x >= pos[0] && y >= pos[1] && x <= pos[2] && y <= pos[3]
+    // x is a number here, as y is null and if y is null then x was an InputPoint, which we handled with the condition above leaving only (x: number, y: number) when we get here
+    return (
+      (x as number) >= this.pos[0] &&
+      y >= this.pos[1] &&
+      (x as number) <= this.pos[2] &&
+      y <= this.pos[3]
+    )
   }
 
   /**

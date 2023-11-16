@@ -1,6 +1,6 @@
-import type {InputPoint, Position} from './inputScalar'
+import type {InputPoint, Position} from './inputScalar.ts'
 
-import {massageInputPoint} from './inputScalar'
+import {massageInputPoint} from './inputScalar.ts'
 
 export class Point {
   pos: Position

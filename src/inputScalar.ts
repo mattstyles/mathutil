@@ -1,5 +1,5 @@
-import {Point} from './point'
-import {Vector2} from './vector2'
+import {Point} from './point.ts'
+import {Vector2} from './vector2.ts'
 
 export type Position = [number, number]
 export type InputPoint = Point | {x: number; y: number} | Position | number
