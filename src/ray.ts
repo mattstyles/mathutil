@@ -1,5 +1,5 @@
-import type {Position} from './inputScalar'
-import {Vector2} from './vector2'
+import type {Position} from './inputScalar.ts'
+import {Vector2} from './vector2.ts'
 
 type CastOptions = {
   initial: boolean

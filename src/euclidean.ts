@@ -1,5 +1,5 @@
-import type {InputPoint} from './inputScalar'
-import {massageInputPoint} from './inputScalar'
+import type {InputPoint} from './inputScalar.ts'
+import {massageInputPoint} from './inputScalar.ts'
 
 /**
  * Returns straight-line distance between two points

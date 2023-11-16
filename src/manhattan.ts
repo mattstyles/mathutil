@@ -1,5 +1,5 @@
-import type {InputPoint} from './inputScalar'
-import {massageInputPoint} from './inputScalar'
+import type {InputPoint} from './inputScalar.ts'
+import {massageInputPoint} from './inputScalar.ts'
 
 export function manhattan(a: InputPoint, b: InputPoint): number {
   const x = massageInputPoint(a)
