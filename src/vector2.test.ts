@@ -1,5 +1,5 @@
-import type {InputVector, Position} from './inputScalar'
-import {Vector2} from './vector2'
+import type {InputVector, Position} from './inputScalar.ts'
+import {Vector2} from './vector2.ts'
 
 /**
  * Checks if vectors are equal (using close enough checking for rounding inconsistencies)
