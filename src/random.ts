@@ -28,8 +28,8 @@ export function createDoomRng(
   const size = opts.range[1] - opts.range[0]
   let index = seed
   return function random(): number {
-    index = (opts.range[0] + (index + 1)) & size
-    return table[index]
+    index = (index + 1) & size
+    return table[opts.range[0] + index]
   }
 }
 

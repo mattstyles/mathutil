@@ -45,3 +45,16 @@ bench
 await bench.run()
 
 console.table(bench.table())
+
+const prg = createDoomRng(3, {
+  table: [0, 1, 2, 3, 4, 5],
+  range: [1, 4],
+})
+
+console.log(prg())
+console.log(prg())
+console.log(prg())
+console.log(prg())
+console.log(prg())
+console.log(prg())
+console.log(prg())
