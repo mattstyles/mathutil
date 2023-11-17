@@ -1,3 +1,8 @@
+## 5.1.0
+
+- _update_ random number generator seed wrapping
+- _fix_ random number generator range
+
 ## 5.0.0
 
 - _add_ :rocket: random number generator
