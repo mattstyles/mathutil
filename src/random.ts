@@ -27,10 +27,8 @@ export function createDoomRng(
       'Range must not exceed table bounds or the Cyberdemon will be summoned 😈',
     )
   }
-  if (seed > opts.range[1] || seed < opts.range[0]) {
-    throw new Error(
-      `Seed must be ${opts.range[0]}...${opts.range[1]} or the Cyberdemon will be summoned 😈`,
-    )
+  if (opts.range[0] >= opts.range[1]) {
+    throw new Error(`Range of ${opts.range[0]}...${opts.range[1]} is invalid.`)
   }
 
   const table = [...opts.table]

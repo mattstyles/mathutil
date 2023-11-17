@@ -145,3 +145,38 @@ test('createDoomRng - offsets and ranges', () => {
     ).toStrictEqual(expected)
   }
 })
+
+test('createDoomRng with typed array table', () => {
+  const buffer = new ArrayBuffer(0xff)
+  const view = new Uint8Array(buffer)
+  view[0] = 0
+  view[1] = 2
+  view[2] = 4
+  view[3] = 6
+  const rng = createDoomRng(0, {
+    table: view,
+  })
+  expect(rng()).toBe(2)
+  expect(rng()).toBe(4)
+})
+
+test('createDoomRng range check', () => {
+  expect(() => {
+    createDoomRng(0, {
+      table: [0, 1, 2, 3],
+      range: [0, 12],
+    })
+  }).toThrow()
+  expect(() => {
+    createDoomRng(0, {
+      table: [0, 1, 2, 3],
+      range: [18, 37],
+    })
+  }).toThrow()
+  expect(() => {
+    createDoomRng(0, {
+      table: [0, 1, 2, 3],
+      range: [2, 0],
+    })
+  }).toThrow()
+})
