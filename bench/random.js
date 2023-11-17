@@ -26,6 +26,9 @@ bench
   .add('Math.random', () => {
     sink(Math.random())
   })
+  .add('Math.random to integer', () => {
+    sink((Math.random() * 0xff) | 0)
+  })
   .add('rng table', () => {
     sink(getRnd())
   })
