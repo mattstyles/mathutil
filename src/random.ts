@@ -23,7 +23,9 @@ export function createDoomRng(
     ...opts,
   }
   if (opts.range[0] > opts.table.length || opts.range[1] > opts.table.length) {
-    throw new Error('Range exceeds table bounds')
+    throw new Error(
+      'Range must not exceed table bounds or the Cyberdemon will be summoned 😈',
+    )
   }
   if (seed > opts.range[1] || seed < opts.range[0]) {
     throw new Error(
@@ -33,9 +35,14 @@ export function createDoomRng(
 
   const table = [...opts.table]
   const size = opts.range[1] - opts.range[0]
-  let index = seed - opts.range[0]
+  let index = (seed - opts.range[0]) & 0xff
+  const inc =
+    ((size + 1) & size) === 0
+      ? () => (index + 1) & size
+      : () => (index + 1) % (size + 1)
+
   return function random(): number {
-    index = (index + 1) & size
+    index = inc()
     return table[opts.range[0] + index]
   }
 }
@@ -47,14 +54,8 @@ export function createDoomRng(
  * @returns 0...255
  */
 export function doom(seed: number = 0): () => number {
-  if (seed > 255 || seed < 0) {
-    throw new Error(
-      'Seed must be 0...255 or the Cyberdemon will be summoned 😈',
-    )
-  }
-
   const table = [...t]
-  let index = seed
+  let index = seed & 0xff
   return function random(): number {
     index = (index + 1) & 0xff
     return table[index]
