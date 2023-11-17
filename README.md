@@ -198,7 +198,7 @@ console.log(manhattan([0, 2], [1, 4]))
 (seed: number) => () => number
 ```
 
-Creates a function that will give you a random number between 0...255.
+Creates a function that will give you a random integer between 0...255.
 
 This is based on a lookup table which is constructed with the following properties:
 
@@ -208,6 +208,8 @@ This is based on a lookup table which is constructed with the following properti
 - It is deterministic
 
 There are lots of good discussions on how this random number generator works, and it’s quirks, [here is one](https://www.youtube.com/watch?v=pq3x1Jy8pYM).
+
+It is a little faster than `Math.random()` (very roughly, 7% on average, although this wasn’t the most scientific method of testing, try out [/bench/random.js](the benchmark) in different environments).
 
 ```js
 import {doom} from 'mathutil'
@@ -236,11 +238,27 @@ const random = createDoomRng(3, {
 
 This configuration starts the seed at offset 3, creates a new small sequential table to pick from, and creates a window that the algorithm will run against (should you want to create lookups from a single larger table, for some reason).
 
-The first couple of iterations:
+The first couple of iterations (note that the index is incremented _before_ returning an integer):
 
 ```
-3, 4, 1, 2, 3, 4
+4, 1, 2, 3, 4, 1
 ```
+
+You can also use crypto to fill the table:
+
+```js
+import crypto from 'node:crypto'
+import {createDoomRng} from 'mathutil/random'
+
+const buffer = new ArrayBuffer(512)
+const view = new Uint8Array(buffer)
+const random = createDoomRng(0, {
+  table: crypto.getRandomValues(view),
+  range: [0, 512],
+})
+```
+
+The table
 
 ### icanhaznumber
 

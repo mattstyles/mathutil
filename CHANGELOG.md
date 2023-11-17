@@ -1,5 +1,6 @@
-##
+## 5.0.0
 
+- _add_ :rocket: random number generator
 - _add_ :house: update tooling
 - _update_ :house: refine output paths
 

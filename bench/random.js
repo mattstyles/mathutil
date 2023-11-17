@@ -29,6 +29,9 @@ bench
   .add('rng table', () => {
     sink(getRnd())
   })
+  /**
+   * Unsurprisingly this is slow with the string generation, slicing, and then parsing. You _can_ fill a table for the doom lookup algo with the crypto module though...
+   */
   .add('crypto :: from uuid', () => {
     sink(parseInt(crypto.randomUUID().slice(-2), 16))
   })

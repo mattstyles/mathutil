@@ -10,14 +10,21 @@ import {table as t} from './icanhaznumber.ts'
  */
 export function createDoomRng(
   seed: number = 0,
-  opts: {
-    table: Array<number>
+  opts?: Partial<{
+    table: Array<number> | Uint8Array
     range: [number, number]
-  } = {
-    table: t,
-    range: [0, 0xff],
-  },
+  }>,
 ): () => number {
+  opts = {
+    ...{
+      table: t,
+      range: [0, 0xff],
+    },
+    ...opts,
+  }
+  if (opts.range[0] > opts.table.length || opts.range[1] > opts.table.length) {
+    throw new Error('Range exceeds table bounds')
+  }
   if (seed > opts.range[1] || seed < opts.range[0]) {
     throw new Error(
       `Seed must be ${opts.range[0]}...${opts.range[1]} or the Cyberdemon will be summoned 😈`,
@@ -26,7 +33,7 @@ export function createDoomRng(
 
   const table = [...opts.table]
   const size = opts.range[1] - opts.range[0]
-  let index = seed
+  let index = seed - opts.range[0]
   return function random(): number {
     index = (index + 1) & size
     return table[opts.range[0] + index]
